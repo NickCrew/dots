@@ -1,0 +1,144 @@
+[init]
+	defaultBranch = master
+
+[color]
+	ui = auto
+
+[core]
+	excludesfile = ~/.gitignore_global
+	ignorecase = false
+	editor = nvim
+	autocrlf = false
+	safecrlf = false
+	quotepath = false
+	preloadindex = true
+
+[push]
+	# When pushing code, always push only your current branch to a branch of the same name
+	default = current
+
+[fetch]
+	# Automatically prune deleted branches from your local copy when you fetch (or pull)
+	prune = true
+
+[pull]
+	rebase = true
+
+[log]
+	# show branch names with git log
+	decorate = true
+
+[alias]
+	a = add
+	st = status -sb
+
+	# Commits
+	c = commit
+	ca = commit -a
+	cm = commit -m
+	cam = commit -am
+
+	# Branches
+	pu = push                           
+	pl = pull                           
+	fe = fetch                          
+	co = checkout                       
+	cob = checkout -b					
+
+	# Diff and Merge
+	cp = cherry-pick
+	mmm = !git fetch origin master && git merge origin/master --no-edit
+	d = diff
+	dt = difftool
+	dtg = !"git difftool -g"
+	dtlast = !"git difftool HEAD@{1}"
+
+	# Work-in-progress
+	wip = !git add -A && git commit -m 'WIP'
+
+	# Drop current changes
+	drop = !git stash && git stash drop
+
+	# revert last commit
+	undo = reset HEAD~1 --mixed  		
+
+	# revert added files 
+	unstage = reset HEAD --      		
+	ua = reset HEAD
+
+	# revert all modifications
+	rev = reset HEAD~1 --hard        
+
+	# add and commit all changed files
+	cm = !git add -A && git commit -m   
+
+	# Update including submodules
+	up = !git pull --rebase --prune $@ && git submodule update --init --recursive  
+
+	# Total obliteration
+	wipe = !git add -A && git commit -qm  WIPE SAVEPOINT  && git reset HEAD~1 --hard
+
+	# Compact and readable log
+	l = log --graph --pretty=format:'%C(magenta)%h%C(blue)%d%Creset %s %C(blue bold)- %an, %ar%Creset'
+
+	# Log with list of changed files for each commit
+	ll = log --stat --abbrev-commit
+
+	# Graph Logs
+	lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+
+	# List of my own commits
+	my = !git log --branches=* --no-merges --pretty=format:'%C(reset)%C(bold)%cd %C(reset)%C(white)%s  %C(reset)%h' --date=short --author=\"$(git config user.name)\"
+
+	# List of branches ordered by last change
+	branches = for-each-ref --sort=-committerdate refs/heads/ --format='%(color:bold)%(refname:short)%(color:reset)\t%(committerdate:relative)'
+
+	# show last commit in directory
+	slc = !"git show $(git lcd)"  
+
+	# Last modified by
+	lum = log -s -n1 --pretty='format:%an %ae%n'
+
+	# List of files with merge conflicts
+	wtf = diff --name-only --diff-filter=U
+
+	# Rebase: add changes and continue
+	cont = !git add . && git rebase --continue
+
+	# Rebase: skip a rebase step
+	skip = rebase --skip
+
+	# Rebase: abort
+	abort = rebase --abort
+
+	# Cancel local commits in the branch: git fuck master
+	fuck = "!f() { git reset --hard origin/$1; }; f"	
+	
+# Include local system settings 
+[include]
+	path = ~/.gitlocal
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[mergetool]
+	keepBackup = true
+
+[diff]
+	tool = bc
+
+[merge]
+	tool = bc
+
+[merge "tool.bc"]
+	trustExitCode = true
+
+[gpg]
+	program = /usr/local/bin/gpg
+
+[commit]
+	gpgsign = true
