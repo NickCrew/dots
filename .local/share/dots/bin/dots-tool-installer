@@ -1,0 +1,148 @@
+#!/usr/bin/env zsh
+# 
+# Install dotfile dependencies
+#
+
+# {{{ Functions
+function show_usage () {
+    echo "USAGE:"
+    echo "    dots-tool-installer [neovim|build|dev|lang]"
+    echo ""
+}
+
+function ensure_brew() {
+    if ! command -v >/dev/null; then
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
+}
+
+function  install_brew_pkg () {
+    ensure_brew
+    brew install "$@"
+}
+
+function install_build-tools () {
+    install_brew_pkg \
+        autoconf \
+        automake \
+        byacc \
+        bzip2 \
+        gcc \
+        gnupg \
+        libevent \
+        make \
+        pkg-config 
+}
+
+function install_gnu_utils () {
+    install_brew_pkg \
+        gnu-sed \
+        coreutils \
+        gnupg \
+        gawk 
+}
+
+function install_dev-tools () {
+    install_fonts
+    install_gnu_utils
+
+    install_brew_pkg \
+            autossh \
+            howdoi \
+            macvim \
+            tldr 
+
+    install_brew_pkg --HEAD universal-ctags/universal-ctags/universal-ctags
+
+    install_brew_pkg gh
+    gh extension install gennaro-tedesco/gh-f
+
+    if ! command -v cargo >/dev/null; then
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    fi
+    source ~/.cargo/env
+
+    cargo_pkgs=(zoxide mcfly broot bat exa)
+    for p in $cargo_pkgs; do
+        if ! command -v $p >/dev/null; then
+            cargo install $p
+        fi
+    done
+
+    [[ ! -f ~/.cargo/bin/rg ]] && cargo install ripgrep
+    [[ ! -f ~/.cargo/bin/fd ]] && cargo install fd-find
+
+
+}
+
+function install_fonts () {
+    ensure_brew
+    brew tap homebrew/cask-fonts
+    brew install --cask \
+        font-sauce-code-pro-nerd-font \
+        font-fira-code-nerd-font
+}
+
+
+function install_neovim () {
+    install_fonts
+    install_lua_pkgs
+    install_python_pkgs
+    install_nodejs_pkgs
+
+    install_brew_pkg --HEAD universal-ctags/universal-ctags/universal-ctags
+
+    install_brew_pkg --HEAD neovim
+
+    install_lang-tools
+    install_pipx_pkgs
+
+    pip install -user pynvim
+    pip install --user 'python-lsp-server[all]' pylsp-mypy pyls-isort      
+
+}
+
+function install_lang-tools () {
+    install_brew_pkg \
+        nodejs \
+        luarocks
+
+    npm install -g \
+        ansible-language-server \
+        bash-language-server \
+        dockerfile-language-server-nodejs 
+        prettier \
+        pyright \
+        vim-language-server \
+        vscode-json-languageserver \
+        yaml-language-server \
+        yarn \
+
+    luarocks install --server=https://luarocks.org/dev luaformatter
+    luarocks install fennel
+
+    install_brew_pkg \
+        pyenv \
+        pyenv-virtualenv \
+        pyenv-virtualenvwrapper \
+        pipx
+
+    pipx install \
+        pylint \
+        ansible \
+        ansible-lint \
+        yapf \
+        autopep8 
+}
+
+# }}}
+
+if [[ "$#" != "2" ]]; then
+    show_usage; exit 1;
+else
+    tool_grp="$1" 
+fi
+
+echo "Installing tool group '${tool_grp}' ..."
+
+install_${tool_grp}
