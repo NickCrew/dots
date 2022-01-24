@@ -1,39 +1,21 @@
-# Dotfiles and Workstation Setup
+# Dev Workstation Setup
+Provision my macOS development workstation
 
-## Installation
-
-Clone this repository
-````bash
-git clone --bare https://github.com/NickCrew/dots.git ~/.dots
-alias dots='git --work-tree=$HOME --git-dir=$HOME/.dots'
-dots checkout
-dots config status.showUntrackedFiles no
-````
-
-Add the `dots` tools to your `$PATH`:
-````bash
-export PATH="${HOME}/.local/share/dots/bin:${PATH}"
-````
-
-### Setup
-
-Call `dots-init` to configure the baseline environment and set the protocol to use for dots git repo (https or git).
+## Dotfiles
 
 ````bash
-dots-init https
+curl -fsSL https://gist.githubusercontent.com/NickCrew/86359f91376b49f0b011bc1ad4b1dcac/raw/abc741340bb22cc54f49555e8e2c250434118f57/install-dots.sh | zsh
 ````
 
-### Provision
-
-Install package groups and dependencies using `dots-tool-installer`:
-
-- Interactive dev tools
-- Language tools (lang server, formatters, debuggers, etc)
-- Neovim
-
+## Sane Defaults for macOS
 ````bash
-dots-tool-installer dev
-dots-tool-installer build
-dots-tool-installer neovim
+curl -fsSL https://gist.githubusercontent.com/NickCrew/405afb9a78d14bd34164329bdd854e6c/raw/9a8d322e411b5c3818cf602159b2f90000ece79c/macos-sane-defaults.sh | zsh
 ````
+
+## Install Development Tools
+Installs `nvim` and its dependencies plus other CLI tools.
+````bash
+curl -fsSL https://gist.githubusercontent.com/NickCrew/13a97a47f78f7ec4b229f48db1d3a7d8/raw/984f478a3cdfe2bce29bae92a12ff17d93821e69/install-macos-dev-tools.sh | zsh -c devtools neovim
+````
+
 
