@@ -1,0 +1,6 @@
+#!/bin/sh
+
+git \
+    --work-tree=${HOME} \
+    --git-dir="${DOTS_REPO:-${HOME}/.dots}" \
+    "$@"

@@ -94,7 +94,7 @@
 ;; If you would like to customize this we recommend copying this file to
 ;; ~/.spacehammer/config.fnl. That will be used in place of the default
 ;; and will not be overwritten by upstream changes when spacehammer is updated.
-(local music-app "Spotify")
+(local music-app "Music.app")
 
 (local return
        {:key :space
@@ -236,12 +236,9 @@
 
 (local app-bindings
        [return
-        {:key :e
-         :title "Emacs"
-         :action (activator "Emacs")}
-        {:key :g
-         :title "Chrome"
-         :action (activator "Google Chrome")}
+        {:key :t
+         :title "Tower"
+         :action (activator "Tower")}
         {:key :f
          :title "Firefox"
          :action (activator "Firefox")}
@@ -251,9 +248,24 @@
         {:key :s
          :title "Slack"
          :action (activator "Slack")}
+        {:key :j
+         :title "Jira"
+         :action (activator "Jira")}
+        {:key :n
+         :title "Notes"
+         :action (activator "Notes")}
+        {:key :p
+         :title "Postman"
+         :action (activator "Postman")}
+        {:key :d
+         :title "Dash"
+         :action (activator "Dash")}
         {:key :b
-         :title "Brave"
-         :action (activator "brave browser")}
+         :title "Beyond Compare"
+         :action (activator "Beyond Compare")}
+        {:key :n
+         :title "DEVONThink 3"
+         :action (activator "DEVONThink 3")}
         {:key :m
          :title music-app
          :action (activator music-app)}])
@@ -323,7 +335,7 @@
          :items emacs-bindings}])
 
 (local common-keys
-       [{:mods [:alt]
+       [{:mods [:ctrl]
          :key :space
          :action "lib.modal:activate-modal"}
         {:mods [:alt]
