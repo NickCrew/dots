@@ -1,0 +1,6 @@
+tags
+packer_compiled.lua
+vimspector/gadgets/**/download/
+vimspector/gadgets/**/*debug*
+vimspector/gadgets/**/.gadgets.json
+!/doc/tags

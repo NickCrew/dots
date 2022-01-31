@@ -1,0 +1,15 @@
+{
+  "adapters": {
+    "pyenv-debug": {
+      "extends": "debugpy",
+      "command": [
+        "python",
+        "${gadgetDir}/debugpy/build/lib/debugpy/adapter"
+      ],
+      "configuration": {
+        "python": "/Users/nick/.pyenv/shims/python",
+        "subProcess": false
+      }
+    }
+  }
+}
