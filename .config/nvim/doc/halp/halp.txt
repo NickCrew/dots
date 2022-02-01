@@ -1,8 +1,0 @@
-*halp.txt*      Nvim        
-*halp*
-*alp*
-
-        HALP MEH  I CAN HAS NO MEMORY by me
-
-===================================================================
-1. Recent Keybindings                           *halp-recent*
