@@ -1,0 +1,19 @@
+/*
+ File: ~/.config/dots/firefox/userChrome.css
+ */
+
+
+#TabsToolbar {
+  visibility: collapse !important;
+}
+
+/* #sidebar-header { */
+/*   display: none; */
+/* } */
+
+/* #sidebar-splitter { */
+/*   width: 0 !important; */
+/* } */
+
+
+

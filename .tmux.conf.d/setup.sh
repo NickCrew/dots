@@ -5,4 +5,4 @@ if [[ -f ~/.tmux.conf ]]; then
     echo "Created backup of existing tmux configuration at ~/.tmux.conf.orig"
 fi
 
-echo 'source ~/.tmux.conf.d/default.conf' > ~/.tmux.conf
+echo 'source ~/.tmux.conf.d/default.tmux' > ~/.tmux.conf

@@ -1,5 +1,16 @@
+# 
+# ~/.gitconfig
+# 
+
 [init]
 	defaultBranch = master
+	templateDir = ~/.git_templates
+
+[gpg]
+	program = /usr/local/bin/gpg
+
+[commit]
+	gpgsign = true
 
 [color]
 	ui = auto
@@ -91,6 +102,9 @@
 	# List of my own commits
 	my = !git log --branches=* --no-merges --pretty=format:'%C(reset)%C(bold)%cd %C(reset)%C(white)%s  %C(reset)%h' --date=short --author=\"$(git config user.name)\"
 
+	# pick a default log style
+	lg = !"git lg1"
+
 	# List of branches ordered by last change
 	branches = for-each-ref --sort=-committerdate refs/heads/ --format='%(color:bold)%(refname:short)%(color:reset)\t%(committerdate:relative)'
 
@@ -114,7 +128,10 @@
 
 	# Cancel local commits in the branch: git fuck master
 	fuck = "!f() { git reset --hard origin/$1; }; f"	
-	
+
+	# generate tags
+	ctags = !sh .git/hooks/ctags
+
 # Include local system settings 
 [include]
 	path = ~/.gitlocal
@@ -127,18 +144,23 @@
 
 [mergetool]
 	keepBackup = true
+	prompt = false
 
 [diff]
-	tool = bc
+	tool = Kaleidoscope
 
 [merge]
-	tool = bc
+	tool = Kaleidoscope
 
 [merge "tool.bc"]
 	trustExitCode = true
 
-[gpg]
-	program = /usr/local/bin/gpg
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 
-[commit]
-	gpgsign = true
+[difftool]
+	prompt = false
+
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
