@@ -1,16 +1,15 @@
 # 
 # ~/.gitconfig
 # 
+# Includes and allows overrides from ~/.gitlocal if it exists
+
+[user]
+	name = Nick Ferguson
+	email = ncf@nickferguson.dev
 
 [init]
 	defaultBranch = master
 	templateDir = ~/.git_templates
-
-[gpg]
-	program = /usr/local/bin/gpg
-
-[commit]
-	gpgsign = true
 
 [color]
 	ui = auto
@@ -132,35 +131,33 @@
 	# generate tags
 	ctags = !sh .git/hooks/ctags
 
-# Include local system settings 
-[include]
-	path = ~/.gitlocal
-
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
 
-[mergetool]
-	keepBackup = true
-	prompt = false
-
 [diff]
 	tool = Kaleidoscope
 
-[merge]
-	tool = Kaleidoscope
-
-[merge "tool.bc"]
-	trustExitCode = true
+[difftool]
+	prompt = false
 
 [difftool "Kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 
-[difftool]
+[merge]
+	tool = Kaleidoscope
+
+[mergetool]
+	keepBackup = true
 	prompt = false
 
 [mergetool "Kaleidoscope"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	trustExitCode = true
+
+[include]
+	path = ~/.gitlocal
+
+

@@ -1,6 +1,7 @@
 cred*
 .netrc
 .gitlocal
+.gitlocal-*
 *cred*
 op-session.sh
 bin/tx-*
