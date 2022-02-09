@@ -1,0 +1,14 @@
+# This is a one line comment. 
+command one goes here.
+
+# This is a second comment for the second command
+# Yes we can have multiple line comment.
+# But remember only the last line will be considered "command".
+command two goes here
+
+#
+command three: in rare cases you don't have any comment, keep an empty # above.
+
+# Any failed parsing will be ignored, like this line because it isn't associated with a command
+
+or this line because it's a single line.
