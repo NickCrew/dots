@@ -1,0 +1,15 @@
+{
+  "adapter": "vscode-node",
+  "filetypes": [
+    "javascript"
+  ],
+  "default": false,
+  "configuration": {
+    "request": "launch",
+    "protocol": "auto",
+    "stopOnEntry": true,
+    "console": "integratedTerminal",
+    "program": "${file}",
+    "cwd": "${workspaceRoot}"
+  }
+}

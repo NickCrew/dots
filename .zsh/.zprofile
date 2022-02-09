@@ -2,6 +2,10 @@
 # .zprofile - Read after .zshenv for login shells only
 # 
 
+if [[ -f "${ZDOTDIR}/.secrets.zsh" ]]; then
+	source "${ZDOTDIR}/.secrets.zsh"
+fi
+
 # autostart tmux if we're not on the workstation
 if [[ -z "$TMUX" && `uname` != "Darwin" ]]; then
 	tmux attach -t main || tmux new -s main

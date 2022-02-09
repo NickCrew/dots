@@ -331,8 +331,8 @@
 
 
 (local common-keys
-       [{:mods [:cmd :shift]
-         :key :space
+       [{:mods []
+         :key :F20
          :action "lib.modal:activate-modal"}
         {:mods [:alt]
          :key :n

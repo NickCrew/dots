@@ -1,4 +1,5 @@
 .zcompdump*
+.secrets.zsh
 .zcomet/
 .zsh_sessions/
 .zsh_history

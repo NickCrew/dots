@@ -1,0 +1,16 @@
+{
+  "configurations": {
+    "Typescript": {
+      "adapter": "vscode-node",
+      "configuration": {
+        "request": "launch",
+        "protocol": "auto",
+        "stopOnEntry": true,
+        "console": "integratedTerminal",
+        "program": "${workspaceRoot}/dist/index.js",
+        "cwd": "${workspaceRoot}"
+      }
+    }
+  }
+}
+

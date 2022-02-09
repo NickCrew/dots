@@ -1,0 +1,37 @@
+{
+"adapters": {
+    "pyenv-debug": {
+      "extends": "debugpy",
+      "command": [
+        "python",
+        "${gadgetDir}/debugpy/build/lib/debugpy/adapter"
+      ],
+      "configuration": {
+        "python": "/Users/nick/.pyenv/shims/python",
+        "subProcess": false
+      }
+    }
+  },
+"configurations": {
+    "adapter": "pyenv-debug",
+
+    "filetypes": [
+      "python"
+    ],
+    "breakpoints": {
+      "exception": {
+        "all": "N",
+        "caught": "N",
+        "uncaught": "Y"
+      }
+    },
+    "default": true,
+    "configuration": {
+      "type": "python",
+      "request": "launch",
+      "stopOnEntry": true,
+      "python": "python",
+      "program": "${file}"
+    }
+  }
+}
