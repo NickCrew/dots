@@ -1,0 +1,20 @@
+# administer home lab resources
+session_name: lab-admin
+start_directory: '~'
+automatic-rename: true
+global_options:
+  default-shell: /usr/bin/zsh
+  default-command: /usr/bin/zsh
+windows:
+  # Proxmox and guests
+  - window_name: pve
+    panes:
+      - shell_command:
+        - ssh bigbear-2
+      - shell_command:
+        - ssh pve
+    automatic-rename: false
+  # default start 
+  - window_name: home
+    start_directory: '~'
+    focus: true

@@ -1,0 +1,7 @@
+.zcompdump*
+.zcomet/
+.zsh_sessions/
+.zsh_history
+*.zwc
+local.zsh
+local.*.zsh

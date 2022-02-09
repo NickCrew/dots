@@ -1,0 +1,11 @@
+session_name: main
+start_directory: '~'
+global_options:
+  default-shell: /usr/bin/zsh
+  default-command: /usr/bin/zsh
+windows:
+  - window_name: home
+    start_directory: '~'
+    focus: true
+    options:
+      automatic-rename: true

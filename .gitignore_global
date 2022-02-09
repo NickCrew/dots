@@ -1,10 +1,23 @@
+#############################
+#
+# Global Git Ignore
+# 
+#############################
+
+# VS Code settings
+launch.json
+tasks.json
+settings.json
+# Neovim settings
+.vimspector.json
+# Misc sandbox dev files
+*-sample-data.*
+requirements-local.txt
+
+
 tags
-Vagrantfile
-**/platform-deploy/**/.vagrant/**
 .env
 .envrc
-*cred*
-cred*
 
 ### macOS.gitignore
 # General
@@ -41,4 +54,3 @@ Temporary Items
 .python-version
 .vimspector.json
 .funky
-tags

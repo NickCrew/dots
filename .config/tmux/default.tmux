@@ -1,24 +1,6 @@
 #
-# ~/.tmux.conf
+# ~/.config/tmux/default.tmux
 #
-
-# {{{ Status Bar Toggles
-#
-bind -T root F12  \
-	set prefix None \; \
-  	set key-table off \; \
-  	if -F '#{pane_in_mode}' 'send-keys -X cancel' \; \
-	source ~/.tmux.conf.d/inactive-status.tmux \; \
-
-bind -T off F12 \
-    set -u prefix \; \
-    set -u key-table \; \
-    set -u status-style \; \
-    set -u window-status-current-style \; \
-    set -u window-status-current-format \; \
-	source ~/.tmux.conf.d/active-status.tmux \; \
-#
-# }}}
 
 # {{{ Settings
 #
@@ -78,8 +60,9 @@ bind-key -T copy-mode-vi 'y'   send -X copy-selection-and-cancel  # Yank/copy to
 unbind p
 bind p paste-buffer  # Paste yanked text
 # }}}
-source ~/.tmux.conf.d/themes/default.tmux
-source ~/.tmux.conf.d/active-status.tmux
+
+source ~/.config/tmux/themes/default.tmux
+source ~/.config/tmux/active-status.tmux
 
 # Plugins
 set -g @plugin 'tmux-plugins/tpm'

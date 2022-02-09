@@ -310,14 +310,14 @@
          :title "Media"
          :items media-bindings}
 		{:key :g
-         :title "Tower"
+         :title "Git Tower"
          :action (activator "Tower")}
         {:key :f
          :title "Firefox"
          :action (activator "Firefox")}
         {:key :t
-         :title "iTerm"
-         :action (activator "iterm")}
+         :title "Kitty Terminal"
+         :action (activator "kitty")}
 		{:key :s
          :title "Slack"
          :action (activator "Slack")}
@@ -331,7 +331,7 @@
 
 
 (local common-keys
-       [{:mods [:alt]
+       [{:mods [:cmd :shift]
          :key :space
          :action "lib.modal:activate-modal"}
         {:mods [:alt]

@@ -17,7 +17,6 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	ignorecase = false
-	editor = nvim
 	autocrlf = false
 	safecrlf = false
 	quotepath = false
