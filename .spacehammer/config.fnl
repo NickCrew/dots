@@ -316,8 +316,8 @@
          :title "Firefox"
          :action (activator "Firefox")}
         {:key :t
-         :title "Kitty Terminal"
-         :action (activator "kitty")}
+         :title "iTerm"
+         :action (activator "iTerm")}
 		{:key :s
          :title "Slack"
          :action (activator "Slack")}
@@ -334,6 +334,15 @@
        [{:mods []
          :key :F20
          :action "lib.modal:activate-modal"}
+		{:key :F13
+         :action (activator "iTerm")}
+		{:key :F14
+         :action (activator "Firefox")}
+		{:key :F15
+         :action (activator "Tower")}
+		{:key :F16
+         :title "Slack"
+         :action (activator "Slack")}
         {:mods [:alt]
          :key :n
          :action "apps:next-app"}

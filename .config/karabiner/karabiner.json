@@ -129,7 +129,7 @@
                             },
                             "to": [
                                 {
-                                    "pointing_button": "button10"
+                                    "key_code": "f13"
                                 }
                             ]
                         },
@@ -139,7 +139,7 @@
                             },
                             "to": [
                                 {
-                                    "pointing_button": "button11"
+                                    "key_code": "f14"
                                 }
                             ]
                         },
@@ -149,7 +149,7 @@
                             },
                             "to": [
                                 {
-                                    "pointing_button": "button12"
+                                    "key_code": "f15"
                                 }
                             ]
                         },
@@ -159,7 +159,7 @@
                             },
                             "to": [
                                 {
-                                    "pointing_button": "button13"
+                                    "key_code": "f16"
                                 }
                             ]
                         },
@@ -169,7 +169,7 @@
                             },
                             "to": [
                                 {
-                                    "pointing_button": "button14"
+                                    "key_code": "f17"
                                 }
                             ]
                         },
@@ -179,7 +179,7 @@
                             },
                             "to": [
                                 {
-                                    "pointing_button": "button15"
+                                    "key_code": "f18"
                                 }
                             ]
                         },
@@ -189,7 +189,7 @@
                             },
                             "to": [
                                 {
-                                    "pointing_button": "button16"
+                                    "key_code": "f19"
                                 }
                             ]
                         },
@@ -199,7 +199,7 @@
                             },
                             "to": [
                                 {
-                                    "pointing_button": "button17"
+                                    "key_code": "f20"
                                 }
                             ]
                         },
@@ -209,7 +209,7 @@
                             },
                             "to": [
                                 {
-                                    "pointing_button": "button18"
+                                    "key_code": "keypad_1"
                                 }
                             ]
                         },
@@ -219,7 +219,7 @@
                             },
                             "to": [
                                 {
-                                    "consumer_key_code": "rewind"
+                                    "key_code": "keypad_2"
                                 }
                             ]
                         },
@@ -229,7 +229,7 @@
                             },
                             "to": [
                                 {
-                                    "consumer_key_code": "play_or_pause"
+                                    "key_code": "keypad_3"
                                 }
                             ]
                         },
@@ -239,7 +239,7 @@
                             },
                             "to": [
                                 {
-                                    "consumer_key_code": "fast_forward"
+                                    "key_code": "keypad_4"
                                 }
                             ]
                         }
@@ -259,7 +259,7 @@
                             },
                             "to": [
                                 {
-                                    "key_code": "f17"
+                                    "key_code": "keypad_6"
                                 }
                             ]
                         },
@@ -269,7 +269,7 @@
                             },
                             "to": [
                                 {
-                                    "key_code": "f16"
+                                    "key_code": "keypad_5"
                                 }
                             ]
                         },
@@ -289,7 +289,7 @@
                             },
                             "to": [
                                 {
-                                    "key_code": "f19"
+                                    "key_code": "caps_lock"
                                 }
                             ]
                         },
@@ -299,7 +299,7 @@
                             },
                             "to": [
                                 {
-                                    "key_code": "f15"
+                                    "consumer_key_code": "play_or_pause"
                                 }
                             ]
                         },
@@ -319,7 +319,7 @@
                             },
                             "to": [
                                 {
-                                    "key_code": "f13"
+                                    "consumer_key_code": "rewind"
                                 }
                             ]
                         },
@@ -329,7 +329,7 @@
                             },
                             "to": [
                                 {
-                                    "key_code": "f14"
+                                    "consumer_key_code": "fast_forward"
                                 }
                             ]
                         }
@@ -343,6 +343,30 @@
                         "is_pointing_device": false,
                         "product_id": 544,
                         "vendor_id": 1452
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": true,
+                    "simple_modifications": [
+                        {
+                            "from": {
+                                "key_code": "caps_lock"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "left_control"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 668,
+                        "vendor_id": 76
                     },
                     "ignore": false,
                     "manipulate_caps_lock_led": true,

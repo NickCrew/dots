@@ -31,7 +31,7 @@
   "local_indexing": null,
   "heartbeat_interval_seconds": null,
   "last_service_level": {
-    "TrialUntil": 365
+    "TrialUntil": 364
   },
   "override_beams": null,
   "override_context_length": null,

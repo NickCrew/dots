@@ -1,0 +1,8 @@
+
+if [[ -z "$1" ]]; then
+	echo "USAGE: find_process_port <PORT>"
+	exit 1
+fi
+
+ps -p $(sudo lsof -nP -i4TCP:${1} | grep LISTEN | awk '{print $2}')
+

@@ -25,7 +25,6 @@ fpath=("${HOME}/.local/share/zsh/functions" "${fpath[@]}")
 zlibs=${ZDOTDIR}/lib
 zsnips=${ZDOTDIR}/snippets
 
-[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 zcomet trigger zsh-prompt-benchmark romkatv/zsh-prompt-benchmark
 
@@ -33,7 +32,6 @@ zcomet load romkatv/powerlevel10k
 [[ -f ${ZDOTDIR}/.p10k.zsh ]] && source ${ZDOTDIR}/.p10k.zsh
 
 zcomet load bigH/git-fuzzy
-zcomet load urbainvaes/fzf-marks
 
 # oh-my-zsh plugins
 zcomet load ohmyzsh plugins/alias-finder
@@ -84,9 +82,14 @@ zcomet snippet ${zlibs}/aliases.zsh
 zcomet snippet ${zlibs}/setopt.zsh
 zcomet snippet ${zlibs}/keybindings.zsh
 zcomet snippet ${zlibs}/completion.zsh
+# kitty shell integration
+zcomet snippet ${zsnips}/kitty.zsh
+zcomet snippet ${zsnips}/op.zsh
+# Fzf shell intergation
+zcomet snippet ${HOME}/.fzf.zsh
+zcomet load urbainvaes/fzf-marks
 # local snippets I don't want to appear in source control
 zcomet snippet ${ZDOTDIR}/local.zsh
-
 
 # load last
 zcomet load zsh-users/zsh-completions
@@ -94,6 +97,10 @@ zcomet load zsh-users/zsh-autosuggestions
 zcomet load zdharma-continuum/fast-syntax-highlighting
 
 zcomet compinit
+
+for f in `ls ~/.bash_completion.d`; do
+	source ~/.bash_completion.d/$f
+done
 
 # zsh profiling
 #zprof

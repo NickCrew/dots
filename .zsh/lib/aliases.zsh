@@ -20,4 +20,4 @@ alias txl='tmux list-sessions'
 alias txk='tmux kill-server'
 alias tkss='tmux kill-session -t'
 
-
+alias edkit='nvim ~/.config/kitty'
