@@ -92,6 +92,118 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "Map Left Option plus h/j/k/l to Arrows",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_option"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_option"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_option"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_option"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Map Tab to Hyper when held",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "tab",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "tab"
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "key_code": "left_shift",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
@@ -129,7 +241,7 @@
                             },
                             "to": [
                                 {
-                                    "key_code": "f13"
+                                    "key_code": "keypad_1"
                                 }
                             ]
                         },
@@ -139,7 +251,7 @@
                             },
                             "to": [
                                 {
-                                    "key_code": "f14"
+                                    "key_code": "keypad_2"
                                 }
                             ]
                         },
@@ -149,7 +261,7 @@
                             },
                             "to": [
                                 {
-                                    "key_code": "f15"
+                                    "key_code": "f13"
                                 }
                             ]
                         },
@@ -159,7 +271,7 @@
                             },
                             "to": [
                                 {
-                                    "key_code": "f16"
+                                    "key_code": "f14"
                                 }
                             ]
                         },
@@ -169,7 +281,7 @@
                             },
                             "to": [
                                 {
-                                    "key_code": "f17"
+                                    "key_code": "f15"
                                 }
                             ]
                         },
@@ -179,7 +291,7 @@
                             },
                             "to": [
                                 {
-                                    "key_code": "f18"
+                                    "key_code": "f16"
                                 }
                             ]
                         },
@@ -189,7 +301,7 @@
                             },
                             "to": [
                                 {
-                                    "key_code": "f19"
+                                    "consumer_key_code": "rewind"
                                 }
                             ]
                         },
@@ -199,7 +311,7 @@
                             },
                             "to": [
                                 {
-                                    "key_code": "f20"
+                                    "consumer_key_code": "play_or_pause"
                                 }
                             ]
                         },
@@ -209,7 +321,7 @@
                             },
                             "to": [
                                 {
-                                    "key_code": "keypad_1"
+                                    "consumer_key_code": "fast_forward"
                                 }
                             ]
                         },
@@ -219,7 +331,7 @@
                             },
                             "to": [
                                 {
-                                    "key_code": "keypad_2"
+                                    "key_code": "f17"
                                 }
                             ]
                         },
@@ -229,7 +341,7 @@
                             },
                             "to": [
                                 {
-                                    "key_code": "keypad_3"
+                                    "key_code": "f18"
                                 }
                             ]
                         },
@@ -239,7 +351,7 @@
                             },
                             "to": [
                                 {
-                                    "key_code": "keypad_4"
+                                    "key_code": "f19"
                                 }
                             ]
                         }
@@ -269,7 +381,7 @@
                             },
                             "to": [
                                 {
-                                    "key_code": "keypad_5"
+                                    "key_code": "f20"
                                 }
                             ]
                         },
@@ -295,41 +407,21 @@
                         },
                         {
                             "from": {
-                                "key_code": "pause"
-                            },
-                            "to": [
-                                {
-                                    "consumer_key_code": "play_or_pause"
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
                                 "key_code": "power"
                             },
                             "to": [
                                 {
-                                    "key_code": "f20"
+                                    "key_code": "power"
                                 }
                             ]
                         },
                         {
                             "from": {
-                                "key_code": "print_screen"
+                                "key_code": "right_shift"
                             },
                             "to": [
                                 {
-                                    "consumer_key_code": "rewind"
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
-                                "key_code": "scroll_lock"
-                            },
-                            "to": [
-                                {
-                                    "consumer_key_code": "fast_forward"
+                                    "key_code": "left_shift"
                                 }
                             ]
                         }
@@ -380,6 +472,46 @@
                                     "key_code": "left_control"
                                 }
                             ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "d"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "t"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "e"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "d"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "k"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "e"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "t"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "k"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -391,7 +523,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "keypad_1"
+                            "consumer_key_code": "display_brightness_decrement"
                         }
                     ]
                 },
@@ -411,7 +543,7 @@
                     },
                     "to": [
                         {
-                            "apple_vendor_keyboard_key_code": "mission_control"
+                            "key_code": "f13"
                         }
                     ]
                 },
@@ -421,7 +553,7 @@
                     },
                     "to": [
                         {
-                            "apple_vendor_keyboard_key_code": "launchpad"
+                            "key_code": "f14"
                         }
                     ]
                 },
@@ -441,7 +573,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "f6"
+                            "consumer_key_code": "mute"
                         }
                     ]
                 },
@@ -481,7 +613,7 @@
                     },
                     "to": [
                         {
-                            "pointing_button": "button20"
+                            "consumer_key_code": "mute"
                         }
                     ]
                 },
@@ -491,7 +623,7 @@
                     },
                     "to": [
                         {
-                            "pointing_button": "button21"
+                            "consumer_key_code": "volume_decrement"
                         }
                     ]
                 },
@@ -501,7 +633,7 @@
                     },
                     "to": [
                         {
-                            "pointing_button": "button22"
+                            "consumer_key_code": "volume_increment"
                         }
                     ]
                 }
@@ -4125,6 +4257,152 @@
                 }
             ],
             "name": "Matias",
+            "parameters": {
+                "delay_milliseconds_before_open_device": 1000
+            },
+            "selected": false,
+            "simple_modifications": [],
+            "virtual_hid_keyboard": {
+                "country_code": 0,
+                "indicate_sticky_modifier_keys_state": true,
+                "mouse_key_xy_scale": 100
+            }
+        },
+        {
+            "complex_modifications": {
+                "parameters": {
+                    "basic.simultaneous_threshold_milliseconds": 50,
+                    "basic.to_delayed_action_delay_milliseconds": 500,
+                    "basic.to_if_alone_timeout_milliseconds": 1000,
+                    "basic.to_if_held_down_threshold_milliseconds": 500,
+                    "mouse_motion_to_scroll.speed": 100
+                },
+                "rules": []
+            },
+            "devices": [],
+            "fn_function_keys": [
+                {
+                    "from": {
+                        "key_code": "f1"
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "display_brightness_decrement"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f2"
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "display_brightness_increment"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f3"
+                    },
+                    "to": [
+                        {
+                            "apple_vendor_keyboard_key_code": "mission_control"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f4"
+                    },
+                    "to": [
+                        {
+                            "apple_vendor_keyboard_key_code": "spotlight"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f5"
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "dictation"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f6"
+                    },
+                    "to": [
+                        {
+                            "key_code": "f6"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f7"
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "rewind"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f8"
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "play_or_pause"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f9"
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "fast_forward"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f10"
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "mute"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f11"
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "volume_decrement"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "f12"
+                    },
+                    "to": [
+                        {
+                            "consumer_key_code": "volume_increment"
+                        }
+                    ]
+                }
+            ],
+            "name": "New profile",
             "parameters": {
                 "delay_milliseconds_before_open_device": 1000
             },
