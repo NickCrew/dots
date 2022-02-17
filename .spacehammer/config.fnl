@@ -236,15 +236,21 @@
 
 (local app-bindings
        [return	
+		{:key :k
+         :title "Kaleidoscope"
+         :action (activator "Kaleidoscope")}
         {:key :n
          :title "Notes"
          :action (activator "Notes")}
         {:key :p
          :title "Postman"
          :action (activator "Postman")}
-		{:key :i
-         :title "Insomnia"
-         :action (activator "Insomnia")}
+		{:key :2
+         :title "2Do"
+         :action (activator "2Do")}
+		{:key :m
+         :title "MindNode"
+         :action (activator "MindNode")}
 		{:key :r
          :title "Reeder"
          :action (activator "Reeder")}
@@ -315,15 +321,15 @@
         {:key :f
          :title "Firefox"
          :action (activator "Firefox")}
+		{:key :k
+         :title "Kitty"
+         :action (activator "Kitty")}
         {:key :t
          :title "iTerm"
          :action (activator "iTerm")}
 		{:key :s
          :title "Slack"
          :action (activator "Slack")}
-		{:key :k
-         :title "Kaleidoscope"
-         :action (activator "Kaleidoscope")}
 		{:key   :a
          :title "More Apps"
          :items app-bindings}
@@ -334,15 +340,15 @@
        [{:mods []
          :key :F20
          :action "lib.modal:activate-modal"}
-		{:key :F13
-         :action (activator "iTerm")}
-		{:key :F14
-         :action (activator "Firefox")}
-		{:key :F15
-         :action (activator "Tower")}
-		{:key :F16
-         :title "Slack"
-         :action (activator "Slack")}
+		;{:key :F13
+        ; :action (activator "iTerm")}
+		;{:key :F14
+        ; :action (activator "Firefox")}
+		;{:key :F15
+        ; :action (activator "Tower")}
+		;{:key :F16
+        ; :title "Slack"
+        ; :action (activator "Slack")}
         {:mods [:alt]
          :key :n
          :action "apps:next-app"}

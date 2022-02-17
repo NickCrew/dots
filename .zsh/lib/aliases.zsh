@@ -15,9 +15,10 @@ for a in $tx_aliases; do
 	unalias $(echo $a | cut -d '=' -f 1)
 done
 alias txa='tmux attach -t'
-alias txs='tmux new-session -s'
-alias txl='tmux list-sessions'
+alias txns='tmux new-session -s'
+alias txls='tmux list-sessions'
 alias txk='tmux kill-server'
 alias tkss='tmux kill-session -t'
 
 alias edkit='nvim ~/.config/kitty'
+alias t='todo.sh'
