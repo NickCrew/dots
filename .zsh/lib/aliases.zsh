@@ -22,3 +22,6 @@ alias tkss='tmux kill-session -t'
 
 alias edkit='nvim ~/.config/kitty'
 alias t='todo.sh'
+if ! command -v kitty >/dev/null; then
+	alias kitty='/Applications/kitty.app/Contents/MacOS/kitty'
+fi
