@@ -3,22 +3,16 @@
 
 GPG_TTY=$(tty)
 export GPG_TTY
-
 export PAGER=less
 
-command -v nvim >/dev/null && \
-	export EDITOR=nvim
-
-command -v vimr >/dev/null && \
-	export VISUAL=vimr
-
-export FZF_COMPLETION_TRIGGER=';;'
-
-export MCFLY_KEY_SCHEME=vim
-export MCFLY_FUZZY=true
-export MCFLY_RESULTS=25
-export MCFLY_RESULTS_SORT=RANK  # RANK or LAST_RUN
-
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
+export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
+
+if command -v nvim >/dev/null; then
+	export EDITOR=nvim
+else
+	export EDITOR=vim
+fi
 
 

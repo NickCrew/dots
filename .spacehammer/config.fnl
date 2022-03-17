@@ -324,7 +324,10 @@
 		{:key :k
          :title "Kitty"
          :action (activator "Kitty")}
-        {:key :t
+		{:key :t
+         :title "Things3"
+         :action (activator "Things3")}
+        {:key :i
          :title "iTerm"
          :action (activator "iTerm")}
 		{:key :s
@@ -337,18 +340,16 @@
 
 
 (local common-keys
-       [{:mods []
+       [{:mods [:ctrl :cmd :alt :shift]
+         :key :space
+         :action "lib.modal:activate-modal"}
+		{:mods []
          :key :F20
          :action "lib.modal:activate-modal"}
-		;{:key :F13
-        ; :action (activator "iTerm")}
-		;{:key :F14
-        ; :action (activator "Firefox")}
-		;{:key :F15
-        ; :action (activator "Tower")}
-		;{:key :F16
-        ; :title "Slack"
-        ; :action (activator "Slack")}
+		{:key :F13
+         :action (activator "Things3")}
+		{:key :F14
+         :action (activator "Slack")}
         {:mods [:alt]
          :key :n
          :action "apps:next-app"}

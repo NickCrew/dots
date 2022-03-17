@@ -9,7 +9,7 @@ set -g mode-keys vi
 set -g mouse on
 
 set -g default-command zsh
-set -g default-terminal "tmux-256color"
+set -g default-terminal "xterm-256color"
 set -ga terminal-overrides ",*256col*:Tc"
 
 set -sg escape-time 10

@@ -1,8 +1,12 @@
 # $ZDOTDIR/setopt.zsh
 #
 
-setopt autocd notify
+# {{{  Options
+setopt AUTO_CD
+setopt NOTIFY
+
+unsetopt CLOBBER
 unsetopt BEEP
 unsetopt LIST_BEEP
-
+#}}}
 

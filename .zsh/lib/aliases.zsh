@@ -1,6 +1,8 @@
 # $ZDOTDIR/aliases.zsh
 #
 
+alias mv='mv -i'
+
 command -v exa >/dev/null && alias ls='exa'
 command -v nvim >/dev/null && alias vi='nvim'
 alias v='vi'

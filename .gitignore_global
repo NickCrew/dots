@@ -4,6 +4,9 @@
 # 
 #############################
 
+locdev-*
+**/locdev/*
+
 # VS Code settings
 launch.json
 tasks.json

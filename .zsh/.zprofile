@@ -28,6 +28,10 @@ if command -v pyenv >/dev/null; then
     eval "$(pyenv init --path)"
 fi
 
+if command -v poetry >/dev/null; then
+	path=("$HOME/.poetry/bin" $path)
+fi
+
 # initialize rust
 [[ -d "${HOME}/.cargo/bin" ]] && path=("$HOME/.cargo/bin" $path)
 

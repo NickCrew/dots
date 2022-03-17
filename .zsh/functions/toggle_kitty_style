@@ -1,0 +1,21 @@
+kitty_conf=$HOME/.config/kitty/style.conf
+light_theme="rose-pine-dawn"
+dark_theme="rose-pine-moon"
+
+if [[ -z $ITERM_PROFILE ]]; then
+	if [[ $KITTY_STYLE == "light" ]]; then
+		export KITTY_STYLE="dark"
+		sed -i "s/$light_theme/$dark_theme/g" $kitty_conf
+	else
+		export KITTY_STYLE="light"
+		sed -i "s/$dark_theme/$light_theme/g" $kitty_conf
+	fi
+
+	kitty_pid=`ps ax | \
+		grep -v grep | \
+		grep kitty.app | \
+		awk '{print $1}'`
+
+	kill -SIGUSR1 $kitty_pid
+		
+fi

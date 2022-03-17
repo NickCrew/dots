@@ -1,0 +1,6 @@
+if [[ -f ~/.op_pw ]]; then
+	pw=$(cat ~/.op_pw)
+	eval $(echo $pw | op signin my)
+else
+	eval "$(op signin my)"
+fi

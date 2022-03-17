@@ -41,6 +41,7 @@
 [alias]
 	a = add
 	st = status -sb
+	fresh = !"git clean -x -d -f"
 
 	# Commits
 	c = commit
@@ -128,8 +129,6 @@
 	# Cancel local commits in the branch: git fuck master
 	fuck = "!f() { git reset --hard origin/$1; }; f"	
 
-	# generate tags
-	ctags = !sh .git/hooks/ctags
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
