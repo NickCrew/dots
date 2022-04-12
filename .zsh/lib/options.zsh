@@ -1,12 +1,10 @@
-# $ZDOTDIR/setopt.zsh
+# lib/options.zsh
 #
 
-# {{{  Options
 setopt AUTO_CD
 setopt NOTIFY
 
 unsetopt CLOBBER
 unsetopt BEEP
 unsetopt LIST_BEEP
-#}}}
 

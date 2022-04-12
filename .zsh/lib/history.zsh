@@ -1,4 +1,4 @@
-# $ZDOTDIR/history.zsh
+# lib/history.zsh
 #
 
 HISTSIZE=1000000
@@ -15,5 +15,3 @@ setopt inc_append_history
 setopt share_history
 setopt hist_ignore_space
 setopt hist_expire_dups_first
-
-

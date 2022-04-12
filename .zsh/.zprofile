@@ -2,43 +2,26 @@
 # .zprofile - Read after .zshenv for login shells only
 # 
 
-if [[ -f "${ZDOTDIR}/.secrets.zsh" ]]; then
-	source "${ZDOTDIR}/.secrets.zsh"
-fi
-
 # autostart tmux if we're not on the workstation
 if [[ -z "$TMUX" && `uname` != "Darwin" ]]; then
 	tmux attach -t main || tmux new -s main
-else
-    # macos specific settings
-    if [[ -d "${HOME}/Applications" ]]; then
-        path=("${HOME}/Applications" $path)
-    fi
 fi
 
-# set the usual paths
+export PYENV_ROOT="$HOME/.pyenv"
+export GOPATH="${HOME}/go"
+
 path=("$HOME/.local/bin" $path)
+path=("${HOME}/Applications" $path)
 path=("$HOME/bin" $path)
 path=("$HOME/opt/bin" $path)
-
-# initialize pyenv
-if command -v pyenv >/dev/null; then
-    export PYENV_ROOT="$HOME/.pyenv"
-    path=("$PYENV_ROOT/bin" $path)
-    eval "$(pyenv init --path)"
-fi
-
-if command -v poetry >/dev/null; then
-	path=("$HOME/.poetry/bin" $path)
-fi
-
-# initialize rust
-[[ -d "${HOME}/.cargo/bin" ]] && path=("$HOME/.cargo/bin" $path)
-
-# initialize golang
-export GOPATH="${HOME}/go"
+path=("$HOME/.poetry/bin" $path)
+path=("$HOME/.cargo/bin" $path)
+path=("$PYENV_ROOT/bin" $path) 
 path=("${GOPATH}/bin" $path)
 
-# export the path and remove dupes
 export PATH
 typeset -U PATH
+
+(( ${+commands[pyenv]} )) && eval "$(pyenv init --path)"
+test -e "${ZDOTDIR}/.secrets.zsh" && source "${ZDOTDIR}/.secrets.zsh"
+

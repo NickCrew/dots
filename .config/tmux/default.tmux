@@ -9,8 +9,12 @@ set -g mode-keys vi
 set -g mouse on
 
 set -g default-command zsh
-set -g default-terminal "xterm-256color"
-set -ga terminal-overrides ",*256col*:Tc"
+set -g default-terminal "screen-256color"
+# tell Tmux that outside terminal supports true color
+set -ga terminal-overrides ",xterm-256color*:Tc"
+
+# for tmux 3.2, you can use the following setting instead:
+# set -as terminal-features ",xterm-256color:RGB"
 
 set -sg escape-time 10
 set -g history-limit 10000
@@ -61,7 +65,7 @@ unbind p
 bind p paste-buffer  # Paste yanked text
 # }}}
 
-source ~/.config/tmux/themes/default.tmux
+source ~/.config/tmux/themes/zenbones/zenbones_light.tmux
 source ~/.config/tmux/active-status.tmux
 
 # Plugins

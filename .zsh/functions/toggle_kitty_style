@@ -1,21 +1,20 @@
-kitty_conf=$HOME/.config/kitty/style.conf
-light_theme="rose-pine-dawn"
-dark_theme="rose-pine-moon"
 
-if [[ -z $ITERM_PROFILE ]]; then
-	if [[ $KITTY_STYLE == "light" ]]; then
-		export KITTY_STYLE="dark"
-		sed -i "s/$light_theme/$dark_theme/g" $kitty_conf
+base_dir=$HOME/.config/kitty
+
+if [[ ! -z "$1" ]]; then
+	new_style="$1"
+else
+	current_style=$(ls -l ${base_dir} | grep style.conf | cut -d '>' -f 2 | cut -d ' ' -f 2 | cut -d '.' -f 1)
+	echo "Current style: ${current_style}"
+	if [[ $current_style == "dark" ]]; then
+		new_style="light"
 	else
-		export KITTY_STYLE="light"
-		sed -i "s/$dark_theme/$light_theme/g" $kitty_conf
+		new_style="dark"
 	fi
-
-	kitty_pid=`ps ax | \
-		grep -v grep | \
-		grep kitty.app | \
-		awk '{print $1}'`
-
-	kill -SIGUSR1 $kitty_pid
-		
 fi
+
+ln -sfv ${base_dir}/${new_style}.conf ${base_dir}/style.conf
+
+kitty_pid=$(ps ax | grep -v grep | grep kitty.app | awk '{print $1}')
+kill -SIGUSR1 $kitty_pid
+

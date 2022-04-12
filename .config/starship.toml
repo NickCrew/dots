@@ -31,7 +31,6 @@ stashed = "📦"
 modified = "📝"
 staged = '[++\($count\)](green)'
 renamed = "👅"
-deleted = "🗑"
 
 [git_metrics]
 added_style = "bold blue"

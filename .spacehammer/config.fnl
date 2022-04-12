@@ -349,7 +349,7 @@
 		{:key :F13
          :action (activator "Things3")}
 		{:key :F14
-         :action (activator "Slack")}
+         :action (activator "Tower")}
         {:mods [:alt]
          :key :n
          :action "apps:next-app"}
