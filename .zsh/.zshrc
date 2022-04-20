@@ -25,6 +25,7 @@ zcomet load romkatv/powerlevel10k
 zcomet load bigH/git-fuzzy
 zcomet snippet ${HOME}/.fzf.zsh
 zcomet load urbainvaes/fzf-marks
+zcomet load romkatv/zsh-defer
 # OMZ plugins and snippets
 zcomet snippet OMZ::lib/clipboard.zsh
 zcomet snippet OMZ::lib/directories.zsh
