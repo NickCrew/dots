@@ -18,7 +18,7 @@
 	excludesfile = ~/.gitignore_global
 	ignorecase = false
 	autocrlf = false
-	editor = nvr --remote-wait-silent
+	editor = nvim
 	safecrlf = false
 	quotepath = false
 	preloadindex = true

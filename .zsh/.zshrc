@@ -35,14 +35,10 @@ zcomet load ohmyzsh plugins/extract
 zcomet load ohmyzsh plugins/fd
 zcomet load ohmyzsh plugins/gh
 zcomet load ohmyzsh plugins/golang
-zcomet load ohmyzsh plugins/gnu-utils
-zcomet load ohmyzsh plugins/encode64
 zcomet load ohmyzsh plugins/iterm2
-zcomet load ohmyzsh plugins/jsontools
 zcomet load ohmyzsh plugins/lpass
 zcomet load ohmyzsh plugins/otp
 zcomet load ohmyzsh plugins/poetry
-zcomet load ohmyzsh plugins/pyenv
 zcomet load ohmyzsh plugins/ripgrep
 zcomet load ohmyzsh plugins/rust
 zcomet load ohmyzsh plugins/ssh-agent
@@ -50,21 +46,23 @@ zcomet load ohmyzsh plugins/tmux
 zcomet load ohmyzsh plugins/vault
 zcomet load ohmyzsh plugins/vi-mode
 zcomet load ohmyzsh plugins/zoxide
+
 # Libs - provide customization to native ZSH
-zcomet snippet ${zlibs}/completion.zsh
-zcomet snippet ${zlibs}/aliases.zsh
-zcomet snippet ${zlibs}/keybindings.zsh
-zcomet snippet ${zlibs}/options.zsh
-zcomet snippet ${zlibs}/history.zsh
-zcomet snippet ${zlibs}/exports.zsh
+source ${zlibs}/completion.zsh
+source ${zlibs}/aliases.zsh
+source ${zlibs}/keybindings.zsh
+source ${zlibs}/options.zsh
+source ${zlibs}/history.zsh
+source ${zlibs}/exports.zsh
 # Snippets - provide integration with third-party apps
-zcomet snippet ${zsnippets}/p10k.zsh
-zcomet snippet ${zsnippets}/kitty.zsh
-zcomet snippet ${zsnippets}/nvim.zsh
-zcomet snippet ${zsnippets}/mcfly.zsh
-zcomet snippet ${zsnippets}/exa.zsh
-zcomet snippet ${zsnippets}/broot.zsh
-zcomet snippet ${ZDOTDIR}/.local.zsh
+source ${zsnippets}/p10k.zsh
+source ${zsnippets}/kitty.zsh
+source ${zsnippets}/mcfly.zsh
+source ${zsnippets}/exa.zsh
+source ${zsnippets}/nvim.zsh
+source ${zsnippets}/broot.zsh
+source ${ZDOTDIR}/.local.zsh
+
 # load last
 zcomet load zsh-users/zsh-completions
 zcomet load zsh-users/zsh-autosuggestions
@@ -72,5 +70,7 @@ zcomet load zdharma-continuum/fast-syntax-highlighting
 zcomet compinit
 zcomet load ohmyzsh plugins/aws
 
+eval "$(pyenv init -)"
+
 # zsh profiling
-# zprof
+ # zprof
