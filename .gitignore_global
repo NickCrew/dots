@@ -8,9 +8,6 @@ locdev-*
 **/locdev/*
 
 # VS Code settings
-launch.json
-tasks.json
-settings.json
 # Neovim settings
 .vimspector.json
 # Misc sandbox dev files
@@ -54,6 +51,5 @@ Temporary Items
 
 # Whitelist in project to use
 *-sample.*
-.python-version
 .vimspector.json
 .funky
