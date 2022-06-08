@@ -53,3 +53,5 @@ Temporary Items
 *-sample.*
 .vimspector.json
 .funky
+
+*/**/package-lock.json
