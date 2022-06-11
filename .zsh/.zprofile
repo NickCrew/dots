@@ -11,6 +11,7 @@ export ZSH_CACHE_DIR="${HOME}/.cache/zsh"  # Used by several OMZ plugins
 export ZSH_RC_BOOTSTRAP="${ZDOTDIR}/lib/init.zsh"
 export PROFILE_ZSH=${PROFILE_ZSH:-0}
 
+
 export PYENV_ROOT="$HOME/.pyenv"
 export GOPATH="${HOME}/go"
 export NVM_DIR="${HOME}/.nvm"
@@ -21,6 +22,7 @@ export GPG_TTY
 export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
 export PAGER=less
 export FZF_COMPLETION_TRIGGER=';;'
+
 
 path=("$HOME/.local/bin" $path)
 path=("${HOME}/Applications" $path)
