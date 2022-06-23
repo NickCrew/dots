@@ -1,32 +1,36 @@
 # vim:foldmethod=marker
-# 
-# .zshrc - configuration for interactive sessions
-#
+# ------------------------------------------------------------------------------
+# File: .zshrc 
+# Description: Configuration for interactive Z shell sessions
+# ------------------------------------------------------------------------------
 
+# Initialize {{{ 
+#
 
 zmodload zsh/zprof  # Enable startup profiling. Use 'zprof' to see results.
 
-# Bootstrap
 if [[ ! -f ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh ]]; then
   command git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR:-${HOME}}/.zcomet/bin
 fi
 source ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh
 
-# Configure function path
-fpath=("${ZDOTDIR}/functions" "${fpath[@]}")# {{{}}}
+# Configure function paths
+fpath+="${ZDOTDIR}/functions"
 autoload -Uz $fpath[1]/*(.:t)
-fpath=("${HOME}/.local/share/zsh/functions" "${fpath[@]}")
+fpath+="${HOME}/.local/share/zsh/functions"
+fpath+="$(brew --prefix)/share/zsh/site-functions" 
 
-
-#
-# Load Plugins 
+# asdf - https://asdf-vm.com
+asdf_dir="$(brew --prefix asdf)/libexec"
+# }}}
+ 
+# Load Plugins {{{
 #
 zcomet load romkatv/powerlevel10k		# super fast prompt
 zcomet load bigH/git-fuzzy				# make git commands fuzzy
-zcomet snippet ${HOME}/.fzf.zsh			# fzf
+zcomet snippet "${HOME}/.fzf.zsh"			# fzf
 zcomet load urbainvaes/fzf-marks		# fzf-based directory bookmark tool
 zcomet load romkatv/zsh-defer			# zsh-defer
-zcomet load marzocchi/zsh-notify		# zsh-notify
 
 zcomet snippet OMZ::lib/functions.zsh
 zcomet snippet OMZ::lib/misc.zsh
@@ -35,7 +39,6 @@ zcomet snippet OMZ::lib/clipboard.zsh
 zcomet snippet OMZ::lib/termsupport.zsh
 zcomet snippet OMZ::lib/grep.zsh
 
-zcomet load ohmyzsh plugins/bgnotify
 zcomet load ohmyzsh plugins/colored-man-pages
 zcomet load ohmyzsh plugins/colorize
 zcomet load ohmyzsh plugins/compleat
@@ -70,7 +73,6 @@ zcomet load ohmyzsh plugins/man
 zcomet load ohmyzsh plugins/mongocli
 zcomet load ohmyzsh plugins/nomad
 zcomet load ohmyzsh plugins/nmap
-zcomet load ohmyzsh plugins/nvm
 zcomet load ohmyzsh plugins/otp
 zcomet load ohmyzsh plugins/poetry
 zcomet load ohmyzsh plugins/ripgrep
@@ -83,26 +85,37 @@ zcomet load ohmyzsh plugins/vault
 zcomet load ohmyzsh plugins/vi-mode
 zcomet load ohmyzsh plugins/web-search
 zcomet load ohmyzsh plugins/zoxide
+# }}}
 
-zcomet snippet ${ZDOTDIR}/integrations/p10k.zsh
-zcomet snippet ${ZDOTDIR}/integrations/kitty.zsh
-zcomet snippet ${ZDOTDIR}/integrations/mcfly.zsh
-zcomet snippet ${ZDOTDIR}/integrations/exa.zsh
-zcomet snippet ${ZDOTDIR}/integrations/nvim.zsh
-zcomet snippet ${ZDOTDIR}/integrations/broot.zsh
-zcomet snippet ${ZDOTDIR}/integrations/poetry.zsh
-zcomet snippet ${ZDOTDIR}/integrations/pyenv.zsh
-zcomet snippet ${ZDOTDIR}/zstyle.zsh
+# Load Snippets {{{ 
+#
+zcomet snippet "${ZDOTDIR}/integrations/p10k.zsh"
+zcomet snippet "${ZDOTDIR}/integrations/kitty.zsh"
+zcomet snippet "${ZDOTDIR}/integrations/mcfly.zsh"
+zcomet snippet "${ZDOTDIR}/integrations/exa.zsh"
+zcomet snippet "${ZDOTDIR}/integrations/nvim.zsh"
+zcomet snippet "${ZDOTDIR}/integrations/broot.zsh"
+zcomet snippet "${ZDOTDIR}/integrations/poetry.zsh"
+zcomet snippet "${ZDOTDIR}/integrations/pyenv.zsh"
+zcomet snippet "${ZDOTDIR}/zstyle.zsh"
 zcomet snippet "${ZDOTDIR}/.local.zsh"
-
+zcomet snippet "${HOME}/.global_aliases"
+# }}}
+ 
+# Load After Plugins {{{  
+# 
 zcomet load zsh-users/zsh-completions					# After
 zcomet load zsh-users/zsh-autosuggestions				# After
 zcomet load zdharma-continuum/fast-syntax-highlighting	# After
 zcomet compinit 
 zcomet load ohmyzsh plugins/aws
+zcomet load ohmyzsh plugins/asdf
 
-#
-# Settings
+
+# load asdf
+# }}}
+
+# History {{{ 
 # 
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=1000000
@@ -110,9 +123,9 @@ SAVEHIST=1000000
 HISTORY_IGNORE="pwd:ls:ll:la:.."
 PER_DIRECTORY_HISTORY_TOGGLE=^G
 HISTORY_BASE=$HOME/.directory_history
+# }}}
 
-#
-# Keybindings
+# Keybindings {{{ 
 #
 bindkey -M vicmd '^h' run-help								# [N] <Ctrl-H> : show man page for current command 								
 bindkey -M viins '^h' run-help								# [I] <Ctrl-H> : show man page for current command 								
@@ -126,10 +139,9 @@ bindkey -M menuselect '^xi' vi-insert						# Insert
 bindkey -M menuselect '^xh' accept-and-hold                	# Hold
 bindkey -M menuselect '^xn' accept-and-infer-next-history  	# Next
 bindkey -M menuselect '^xu' undo                           	# Undo
+# }}}
 
-
-#
-# Options
+# Options {{{ 
 #
 setopt glob_complete			# Show autocompletion menu with globs
 setopt menu_complete			# Automatically highlight first element of completion menu
@@ -153,5 +165,17 @@ setopt inc_append_History		# add new lines to the history file immediately (do n
 unsetopt clobber				# Disallow overwriting existing files
 unsetopt hist_beep				# shut up shut up shut up
 unsetopt beep					# shut up shut up shut up
+# }}}
 
+alias darkMode="2>/dev/null defaults read -g AppleInterfaceStyle"
 
+if [[ "${IS_KITTY}" == "1" ]]; then
+	# Use this theme when system light mode is enabled. (kitty's dark theme set in ~/.config/kitty/kitty.conf)
+	KITTY_LIGHT_THEME="${KITTY_LIGHT_THEME:-$HOME/.config/kitty/themes/nightfox/dawnfox/nightfox_kitty.conf}"
+	KITTY_SOCK=${KITTY_SOCK:-/tmp/mykitty}	# socket for remote communication
+	if [[ ! ( $(darkMode) =~ 'Dark' ) ]]; then
+		kitty @ --to unix:${KITTY_SOCK} set-colors --all --configured $KITTY_LIGHT_THEME
+	else
+	  kitty @ --to unix:${KITTY_SOCK} set-colors --reset
+	fi
+fi

@@ -1,4 +1,5 @@
 
+
 KITTY_INSTALLATION_DIR="/Applications/kitty.app/Contents/Resources/kitty"
 if test -n "$KITTY_INSTALLATION_DIR"; then
 	export KITTY_SHELL_INTEGRATION="enabled"
@@ -6,3 +7,5 @@ if test -n "$KITTY_INSTALLATION_DIR"; then
 	kitty-integration
 	unfunction kitty-integration
 fi
+
+

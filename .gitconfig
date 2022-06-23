@@ -9,7 +9,6 @@
 
 [init]
 	defaultBranch = master
-	templateDir = ~/.git_templates
 
 [color]
 	ui = auto
@@ -18,7 +17,7 @@
 	excludesfile = ~/.gitignore_global
 	ignorecase = false
 	autocrlf = false
-	editor = nvim
+	editor = nvr --remote-wait-silent
 	safecrlf = false
 	quotepath = false
 	preloadindex = true

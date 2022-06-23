@@ -11,13 +11,17 @@ export ZSH_CACHE_DIR="${HOME}/.cache/zsh"  # Used by several OMZ plugins
 export ZSH_RC_BOOTSTRAP="${ZDOTDIR}/lib/init.zsh"
 export PROFILE_ZSH=${PROFILE_ZSH:-0}
 
+export KITTY_THEMES_DIR="${HOME}/.config/kitty/themes"
+export KITTY_SOCK=/tmp/mykitty
+
 
 export PYENV_ROOT="$HOME/.pyenv"
 export GOPATH="${HOME}/go"
 export NVM_DIR="${HOME}/.nvm"
 GPG_TTY=$(tty)
 export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
-export EDITOR=vi
+export EDITOR=nvim
+export VISUAL=vimr
 export GPG_TTY
 export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
 export PAGER=less

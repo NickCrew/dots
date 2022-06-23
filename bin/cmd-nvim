@@ -1,0 +1,17 @@
+#!/Users/nick/.pyenv/versions/neovim/bin/python3
+
+from sys import argv
+from glob import glob
+from pynvim import attach
+
+nvims = [attach('socket', path=p) for p in glob('/tmp/nvim/nvim*.sock')]
+
+if len(argv) > 1:
+    cmd: str = ' '.join(argv[1:])
+else:
+    cmd: str = argv[1]
+
+ for nvim in nvims:
+     nvim.command(cmd)
+
+
