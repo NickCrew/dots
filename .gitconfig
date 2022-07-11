@@ -7,6 +7,9 @@
 	name = Nick Ferguson
 	email = ncf@nickferguson.dev
 
+[commit]
+	gpgsign = false
+
 [init]
 	defaultBranch = master
 
@@ -155,7 +158,8 @@
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	trustExitCode = true
 
-[include]
-	path = ~/.gitlocal
+ [include]
+	 path = ~/.gitconfig.d/local.conf
+
 
 
