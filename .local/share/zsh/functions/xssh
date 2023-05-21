@@ -1,0 +1,11 @@
+
+ssh \
+	-f \
+	-N \
+	-oServerAliveInterval=60 \
+	-oServerAliveCountMax=10 \
+	-oControlMaster=auto \
+	-oControlPath=~/.ssh/%r:%h:%p \
+	-oControlPersit=4h \
+	$@
+
