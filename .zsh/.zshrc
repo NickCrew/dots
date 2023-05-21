@@ -127,7 +127,7 @@ alias nv='nvim'
 alias twr='gittower'
 alias lzg='lazygit'
 alias po='poetry'
-alias ls='exa'
+(( $+commands[exa] )) && alias ls='exa'
 alias la='ls -ah'
 alias ll='ls -lah'
 alias l='ls -lh'
@@ -191,3 +191,4 @@ setopt no_bg_nice		# Don't run bg jobs at a lower priority
 setopt no_hup			# Don't kill jobs when the shell exits
 setopt notify			# notify when background job finishes				
 # }}}
+

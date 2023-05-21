@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 NC='\033[0m'              # No Color
 BIRed='\033[1;91m'        # Red
