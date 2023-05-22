@@ -1,28 +1,21 @@
 # Runs before .zshrc 
 
-OS=$(uname -s)
 
-# Created by `pipx` on 2023-04-28 22:47:34
-GOPATH="${GOPATH:-$HOME/opt/go}"
-PYENV_ROOT="${PYENV_ROOT:-$HOME/.pyenv}"
-
-path=("/usr/local/sbin" $path)
-path=("$HOME/.local/bin" $path)
-path=("$HOME/Applications" $path)
-path=("$HOME/bin" $path)
-path=("$HOME/opt/bin" $path)
-path=("$HOME/.cargo/bin" $path)
-path=("${GOPATH:-$HOME/opt/go}/bin" $path)
-path=("$PYENV_ROOT/bin" $path)
-
-if [[ $OS = 'Darwin' ]]; then
-	path=("/Applications/WezTerm.app/Contents/MacOS" $path)
+if [[ $(uname -s) = 'Darwin' ]]; then 
+	if [[ $(uname -m) = "x86_64" ]]; then
+		eval "$(/usr/local/HomeBrew/bin/brew shellenv)"
+	else
+		eval "$(/opt/homebrew/bin/brew shellenv)"
+	fi
 fi
 
-export PYENV_ROOT
-export GOPATH
-export PATH
+if command -v go >/dev/null; then
+	export GOPATH="${GOPATH:-$HOME/opt/go}"
+	export PATH="${PATH}:${GOPATH}"
+fi
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-eval "$(pyenv init --path)"
+if command -v pyenv >/dev/null; then
+	export PYENV_ROOT="${PYENV_ROOT:-$HOME/.pyenv}"
+	export PATH="${PYENV_ROOT}/bin:${PATH}"
+fi
 

@@ -4,6 +4,7 @@
 # Description: Configuration for interactive Z shell sessions
 # ------------------------------------------------------------------------------
 
+
 zmodload zsh/zprof  # Start profiling
 
 # {{{ 1.0 - Initialization
