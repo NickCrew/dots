@@ -1,0 +1,102 @@
+# vim: set ft=tmux
+
+set -g prefix C-a  
+set -g mode-keys vi
+set -g mouse on
+
+# set -g default-command zsh
+set -g default-terminal "screen-256color"
+# tell Tmux that outside terminal supports true color
+set -ga terminal-overrides ",xterm-256color*:Tc"
+
+# for tmux 3.2, you can use the following setting instead:
+# set -as terminal-features ",xterm-256color:RGB"
+
+set -sg escape-time 10
+set -g history-limit 10000
+set -g focus-events on
+set -g status-interval 5
+set -g base-index 1
+setw -g pane-base-index 1
+set -g automatic-rename on
+set-option -g renumber-windows on
+
+unbind r
+bind-key r source-file ~/.tmux.conf  
+# Open buffer selection
+bind-key B choose-buffer
+
+# Change Window Focus
+bind f next-window
+bind b previous-window
+bind c new-window		
+# Move Window and keep focus on moved window
+bind S-Left swap-window -d -t -1
+bind S-Right swap-window -d -t +1
+# Pane Controls
+bind - split-window -v
+bind | split-window -h
+bind x kill-pane
+bind & kill-window
+# Pane Navigation
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+# Pane Sizing
+bind -r H resize-pane -L 5
+bind -r J resize-pane -D 5
+bind -r K resize-pane -U 5
+bind -r L resize-pane -R 5
+# Copy and Paste
+bind-key -T copy-mode-vi 'v'   send -X begin-selection  # Visual selection 
+bind-key -T copy-mode-vi 'S-v' send -X rectangle-toggle  # Visual block selection
+bind-key -T copy-mode-vi 'y'   send -X copy-selection-and-cancel  # Yank/copy to tmux buffer
+unbind p
+bind p paste-buffer  # Paste yanked text
+
+# Foregrounds
+primary_fg_colour="colour253" # white/grey
+secondary_fg_colour="colour246" # grey/grey
+alt_fg_colour="colour7"
+# Backgrounds
+primary_bg_colour="colour236" # dark/grey
+# Values
+secondary_field_value_colour="colour141"	# violet
+alt_field_value_colour="colour15"
+# Keys
+primary_label_colour="colour131"		# orange
+secondary_label_colour="colour81"      # blue
+# Windows
+current_window_number_colour="colour208" # deep purple
+current_window_hi_colour="colour74"     # blue
+# }}}
+
+# Pane Border
+set -g pane-active-border-style fg=colour38
+set -g pane-border-style fg=colour236
+# Status Bar
+set -g status-fg $primary_fg_colour
+set -g status-bg $primary_bg_colour
+# Status left
+set -g status-left-length 39
+set -g status-left-style bg=$primary_bg_colour,fg=$primary_fg_colour
+set -g status-left "#[fg=$secondary_label_colour][#[fg=$secondary_fg_colour]#(whoami)#[fg=$secondary_label_colour]@#[fg=$secondary_fg_colour]#[fg=$alt_fg_colour]#H#[fg=$secondary_label_colour]][#[bg=$primary_bg_colour]#[fg=$secondary_field_value_colour]#S#[fg=$secondary_label_colour]] " 
+# Status Right
+set -g status-right-style bg=$primary_bg_colour,fg=$primary_fg_colour
+set -g status-right-length 45
+# Window Status Style
+set -g window-status-style bg=$primary_bg_colour,fg=$primary_fg_colour
+set -g window-status-current-style bg=$primary_bg_colour,fg=$primary_fg_colour
+set -g window-status-separator ''
+set -g window-status-activity-style bg=$primary_fg_colour,fg=$primary_bg_colour
+
+secondary_label_colour="colour81"           
+secondary_field_value_colour="colour141"
+alt_field_value_colour="colour15"
+set -g status-right "#[fg=$secondary_label_colour] [#[fg=colour141]%H:%M#[fg=$secondary_label_colour]] #{prefix_highlight}"
+set -g status-left "#[fg=$secondary_label_colour][#[bg=$primary_bg_colour]#[fg=$secondary_field_value_colour]#S#[fg=$secondary_label_colour]] " 
+set -g window-status-format "#[fg=$alt_fg_colour] #I#[fg=$primary_fg_colour] #{window_name} " 
+set -g window-status-current-format "#[bg=primary_bg_colour]#[fg=$current_window_number_colour] #I#[fg=$secondary_label_colour] #{window_name} #[fg=$accent_fg_colour_alt]" 
+
+

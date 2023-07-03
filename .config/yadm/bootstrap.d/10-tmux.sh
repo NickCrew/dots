@@ -1,11 +1,17 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 set -e
 
-OS="$(uname -s)"
-PREFIX="${PREFIX:-$HOME/.local}"
+TMUX_REMOTE="https://github.com/tmux/tmux"
+TPM_REMOTE="https://github.com/tmux-plugins/tpm"
+TMUX_PLUG="${TMUX_PLUG:-$HOME/.tmux/plugins}"
 
+OS="$(uname -s)"
+PREFIX="${TMUX_PREFIX:-$HOME/.local}"
+
+# 
 # Install dependencies
-deps() {
+# 
+install_deps() {
 	if [[ $OS == "Darwin" ]]; then
 		command -v brew >/dev/null || sh "$(dirname $BASH_SOURCE[0])/homebrew.sh"
 		brew install \
@@ -29,28 +35,30 @@ deps() {
 	fi
 }
 
+#
 # Compile
-build() {
-	mkdir -p ~/.local/share/man/man1 ~/.local/src
-	cd ~/.local/src
-	if [ -d tmux ]; then
-		cd tmux && git pull
-	else
-		git clone https://github.com/tmux/tmux.git tmux && cd tmux 
-	fi 
+# 
+build_tmux() {
+	TMUX_SRC="${PREFIX}/src/tmux"
+	mkdir -p "${TMUX_SRC}" "${PREFIX}/share/man/man1" \
+		&& cd "${TMUX_SRC}"
+
+	if [ -d .git ]; then git pull -f;
+	else git clone ${TMUX_REMOTE}; fi
+
 	sh autogen.sh 
 	./configure --enable-utf8proc --prefix=${PREFIX}
 	make && make install 
 }
 
+#
 # Install plugin manager
-plugins() {
-	if [ ! -d $HOME/.tmux/plugins/tpm ]; then
-		echo "Installing tmux plugin manager..."
-		git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
-	fi
+# 
+install_plugin_mgr() {
+	[ ! -d "${TMUX_PLUG}/tpm" ] \
+		&& git clone ${TPM_REMOTE} "${TMUX_PLUG}"
 }
 
-deps
-build
-plugins
+install_deps
+build_tmux
+install_plugin_mgr

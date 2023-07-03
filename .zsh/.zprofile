@@ -10,7 +10,7 @@ if [[ $(uname -s) = 'Darwin' ]]; then
 fi
 
 if command -v go >/dev/null; then
-	export GOPATH="${GOPATH:-$HOME/opt/go}"
+	export GOPATH="${GOPATH:-$HOME/go}"
 	export PATH="${PATH}:${GOPATH}"
 fi
 
@@ -19,3 +19,6 @@ if command -v pyenv >/dev/null; then
 	export PATH="${PYENV_ROOT}/bin:${PATH}"
 fi
 
+
+# Created by `pipx` on 2023-06-02 02:11:01
+export PATH="$PATH:/Users/nick/.local/bin"

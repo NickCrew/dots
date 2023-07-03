@@ -1,70 +1,39 @@
 # vim: foldmethod=marker
 # ------------------------------------------------------------------------------
 # File: .zshrc 
-# Description: Configuration for interactive Z shell sessions
+# Description: Loaded for ZSH interactive sessions
 # ------------------------------------------------------------------------------
 
 
-zmodload zsh/zprof  # Start profiling
+# 1.0 - Initialization  {{{
 
-# {{{ 1.0 - Initialization
-# 1.1 - Zcomet  {{{
+# Start profiling
+zmodload zsh/zprof  
+
 if [[ ! -f ${ZDOTDIR}/.zcomet/bin/zcomet.zsh ]]; then
 	command git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR}/.zcomet/bin
 fi
 source ${ZDOTDIR}/.zcomet/bin/zcomet.zsh
-# }}}
-# 1.1 Local settings and Functions {{{
+
 [ -f $ZDOTDIR/.zlocal.zsh ] && source ${ZDOTDIR}/.zlocal.zsh
+
 # Function Paths 
 fpath+="${HOME}/.local/share/zsh/functions"
 fpath+="${ZDOTDIR}/.zfunc"
 autoload -Uz $fpath[1]/*(.:t)
 fpath+="$(brew --prefix)/share/zsh/site-functions" 
 # }}}
-# }}}
-
-# {{{ 2.0 - Plugins 
-# 2.1 - Load {{{
-zcomet load romkatv/powerlevel10k		
-zcomet load ohmyzsh plugins/direnv
-zcomet load ohmyzsh plugins/fd
-zcomet trigger gh ohmyzsh plugins/gh
-zcomet load ohmyzsh plugins/iterm2
-zcomet load ohmyzsh plugins/gnu-utils
-zcomet load ohmyzsh plugins/gpg-agent
-zcomet load ohmyzsh plugins/ripgrep
-zcomet load ohmyzsh plugins/rust
-zcomet load ohmyzsh plugins/ssh-agent
-zcomet load ohmyzsh plugins/rust
-zcomet load ohmyzsh plugins/zoxide
-zcomet load ohmyzsh plugins/git
-zcomet load ohmyzsh plugins/dash
-# }}}
-# 2.2 - Trigger {{{
-zcomet trigger tmux ohmyzsh plugins/tmux
-zcomet trigger npm ohmyzsh plugins/npm
-zcomet trigger nvm ohmyzsh plugins/nvm
-# }}}
-# 2.3 - Snippet {{{
-zcomet snippet OMZ::lib/directories.zsh
-zcomet snippet OMZ::plugins/1password/1password.plugin.zsh
-zcomet snippet ${HOME}/.p10k.zsh
-zcomet snippet ${HOME}/.fzf.zsh
-# }}}
-# }}}
 
 # 3.0 - Completion {{{
+
 zmodload zsh/complist  # Should be called before compinit
-# 3.1 - Completion Options {{{
-setopt complete_aliases         # Don't expand aliases before completionfinishes
+
+unsetopt completealiases        # Don't expand aliases before completionfinishes
 setopt glob_complete			# Show autocompletion menu with globs
 setopt menu_complete			# Automatically highlight first element of completion menu
 setopt auto_list				# Automatically list choices on ambiguous completion.
 setopt complete_in_word			# Complete from both ends of a word.
 setopt no_list_beep				# Don't beep when listing choices on ambiguous completion
-	# }}}
-# 3.2 - Zstyle {{{
 zstyle ':completion:*' completer _extensions _complete _approximate
 # Use cache for commands using cache
 zstyle ':completion:*' use-cache on
@@ -95,8 +64,8 @@ zstyle ':completion:*:*:-command-:*:*' group-order aliases builtins functions co
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' keep-prefix true
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
-# }}}
-# 3.3 - Completion Keybindigns {{{
+
+
 bindkey -M menuselect 'h' vi-backward-char					# select left in completion menu					
 bindkey -M menuselect 'k' vi-up-line-or-history				# select above in completion menu
 bindkey -M menuselect 'j' vi-down-line-or-history   		# select below in completion menu
@@ -106,15 +75,41 @@ bindkey -M menuselect '^xi' vi-insert						# Insert
 bindkey -M menuselect '^xh' accept-and-hold                	# Hold
 bindkey -M menuselect '^xn' accept-and-infer-next-history  	# Next
 bindkey -M menuselect '^xu' undo                           	# Undo
-# }}}
+
 # }}}
 
-# 4.0 Plugin (After) {{{
+# {{{ 2.0 - Plugins 
+zcomet load romkatv/powerlevel10k		
+zcomet load ohmyzsh plugins/direnv
+zcomet load ohmyzsh plugins/fd
+zcomet trigger gh ohmyzsh plugins/gh
+zcomet load ohmyzsh plugins/iterm2
+zcomet load ohmyzsh plugins/gnu-utils
+zcomet load ohmyzsh plugins/gpg-agent
+zcomet load ohmyzsh plugins/ripgrep
+zcomet load ohmyzsh plugins/rust
+zcomet load ohmyzsh plugins/ssh-agent
+zcomet load ohmyzsh plugins/rust
+zcomet load ohmyzsh plugins/zoxide
+zcomet load ohmyzsh plugins/git
+zcomet load ohmyzsh plugins/dash
+
+zcomet trigger tmux ohmyzsh plugins/tmux
+zcomet trigger npm ohmyzsh plugins/npm
+zcomet trigger nvm ohmyzsh plugins/nvm
+
+zcomet snippet OMZ::lib/directories.zsh
+zcomet snippet OMZ::plugins/1password/1password.plugin.zsh
+zcomet snippet OMZ::plugins/multipass/multipass.plugin.zsh
+
 zcomet load zsh-users/zsh-autosuggestions			
 zcomet load zsh-users/zsh-syntax-highlighting	
 zcomet load zsh-users/zsh-completions			
+zcomet load softmoth/zsh-vim-mode
 zcomet compinit 
-# AWS CLI Completion
+
+zcomet load junegunn/fzf shell completion.zsh key-bindings.zsh
+
 if command -v aws_completer &> /dev/null; then
   autoload -Uz bashcompinit && bashcompinit
   complete -C aws_completer aws
@@ -122,51 +117,44 @@ if command -v aws_completer &> /dev/null; then
 fi
 # }}}
 
-# 5.0 - Aliases {{{
+# 5.0 - Integrations {{{
+#
+(( $+commands[nvim] )) && EDITOR=nvim || EDITOR=vi
+(( $+commands[most])) && PAGER=most || PAGER=less
+(( $+commands[exa] )) && alias ls='exa'
+(( ${+commands[fzf]} )) || ~[fzf]/install --bin
+
+GPG_TTY=$(tty)
+export GPG_TTY
+export PAGER
+export EDITOR
+export FZF_COMPLETION_TRIGGER=';;'
+export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+
+if [[ $(uname) == 'Darwin' ]]; then
+	export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
+	export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
+fi
+
+test -e ~/.p10k.zsh && source ~/.p10k.zsh
+
 alias v='vi'
 alias nv='nvim'
 alias twr='gittower'
 alias lzg='lazygit'
 alias po='poetry'
-(( $+commands[exa] )) && alias ls='exa'
-alias la='ls -ah'
-alias ll='ls -lah'
-alias l='ls -lh'
-# }}}
 
-# 6.0 - Keybindings {{{
-bindkey -M vicmd '^h' run-help	# [N] <Ctrl-H> : show man page for current command 								
-bindkey -M viins '^h' run-help	# [I] <Ctrl-H> : show man page for current command 								
-bindkey -M viins '^e' autosuggest-accept	# [I] <Ctrl-E> : Accept and complete auto-suggestion
-
-# }}}
-
-# 7.0 - Variables {{{ 
-(( $+commands[nvim] )) && EDITOR=nvim || EDITOR=vi
-(( $+commands[most])) && PAGER=most || PAGER=less
-GPG_TTY=$(tty)
-export GPG_TTY
-export PAGER
-export EDITOR
-export VISUAL=$EDITOR
-if [[ $(uname) == 'Darwin' ]]; then
-	export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
-	export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
-fi
-export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
-export FZF_COMPLETION_TRIGGER=';;'
 # }}}
 
 # 8.0 - History {{{
-# 8.1 - Hist Environment {{{
+#
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=1000000
 SAVEHIST=1000000
 HISTORY_IGNORE="pwd:ls:ll:la:.."
 PER_DIRECTORY_HISTORY_TOGGLE=^G
 HISTORY_BASE=$HOME/.directory_history
-# }}}
-# 8.2 - Hist Options {{{
+
 setopt bang_hist				# Perform textual history expansion, csh-style, treating the character ‘!’ specially.
 setopt hist_no_functions		# Don't store function definitions
 setopt hist_no_store			# Don't store history (fc -l) command
@@ -179,17 +167,29 @@ setopt hist_verify            	# Show command with history expansion to user bef
 setopt hist_reduce_blanks		# Remove superfluous blanks from each command line being added to the history list
 setopt inc_append_History		# Add new lines to the history file immediately (do not wait until exit)
 unsetopt hist_beep				# Shut up shut up shut up
-	# }}}
+
 # }}}
 
-# 9.0 - Misc. Options {{{
+# 9.0 - Misc  {{{
+
+alias la='ls -ah'
+alias ll='ls -lah'
+alias l='ls -lh'
+
 unsetopt beep			# shut up shut up shut up
 unsetopt clobber		# Disallow overwriting existing files
+
 setopt local_traps		# Allow functions to have local traps
 setopt local_options	# Allow fucntions to have local options
+
 setopt ignore_eof		# Don't exit on EOF
 setopt no_bg_nice		# Don't run bg jobs at a lower priority
 setopt no_hup			# Don't kill jobs when the shell exits
 setopt notify			# notify when background job finishes				
+
+bindkey -M vicmd '^h' run-help				# [N] <Ctrl-H> : show man page for current command 								
+bindkey -M viins '^h' run-help				# [I] <Ctrl-H> : show man page for current command 								
+bindkey -M viins '^e' autosuggest-accept	# [I] <Ctrl-E> : Accept and complete auto-suggestion
 # }}}
+
 
