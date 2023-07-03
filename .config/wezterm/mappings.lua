@@ -1,0 +1,31 @@
+local act = require('wezterm').action
+
+return {
+		{ key = "q",          mods = "ALT",           action = act.CloseCurrentPane({ confirm = false }) },
+		{ key = "z",          mods = "ALT",           action = act.TogglePaneZoomState }, { key = "F11",        mods = "",              action = act.ToggleFullScreen },
+		{ key = "v",          mods = "ALT",           action = act.ActivateCopyMode },
+		{ key = "c",          mods = "CTRL|SHIFT",    action = act.CopyTo("Clipboard")},
+		{ key = "v",          mods = "CTRL|SHIFT",    action = act.PasteFrom("Clipboard")},
+		{ key = "=",          mods = "CTRL",          action = act.IncreaseFontSize },
+		{ key = "-",          mods = "CTRL",          action = act.DecreaseFontSize },
+		{ key = "h",          mods = "ALT",           action = act.AdjustPaneSize({ "Left", 1 }) },
+		{ key = "j",          mods = "ALT",           action = act.AdjustPaneSize({ "Down", 1 }) },
+		{ key = "k",          mods = "ALT",           action = act.AdjustPaneSize({ "Up", 1 }) },
+		{ key = "l",          mods = "ALT",           action = act.AdjustPaneSize({ "Right", 1 }) },
+        { key = 'LeftArrow',  mods = 'SUPER',         action = act.ActivatePaneDirection 'Left', },
+        { key = 'RightArrow', mods = 'SUPER',         action = act.ActivatePaneDirection 'Right', },
+        { key = 'UpArrow',    mods = 'SUPER',         action = act.ActivatePaneDirection 'Up', },
+        { key = 'DownArrow',  mods = 'SUPER',         action = act.ActivatePaneDirection 'Down', },
+        { key = 'PageDown',    mods = 'SHIFT',         action = act.ScrollByPage(1)},
+        { key = 'PageUp',    mods = 'SHIFT',         action = act.ScrollByPage(-1)},
+		{ key = "1",          mods = "SUPER",         action = act({ ActivateTab = 0 }) },
+		{ key = "2",          mods = "SUPER",         action = act({ ActivateTab = 1 }) },
+		{ key = "3",          mods = "SUPER",         action = act({ ActivateTab = 2 }) },
+		{ key = "4",          mods = "SUPER",         action = act({ ActivateTab = 3 }) },
+		{ key = "5",          mods = "SUPER",         action = act({ ActivateTab = 4 }) },
+		{ key = "6",          mods = "SUPER",         action = act({ ActivateTab = 5 }) },
+		{ key = "7",          mods = "SUPER",         action = act({ ActivateTab = 6 }) },
+		{ key = "8",          mods = "SUPER",         action = act({ ActivateTab = 7 }) },
+		{ key = "9",          mods = "SUPER",         action = act({ ActivateTab = 8 }) },
+        { key = "l",          mods = "SUPER",         action = act.ShowLauncher }
+}
