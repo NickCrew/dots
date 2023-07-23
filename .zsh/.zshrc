@@ -1,4 +1,5 @@
 # vim: foldmethod=marker
+#
 # ------------------------------------------------------------------------------
 # File: .zshrc 
 # Description: Loaded for ZSH interactive sessions
@@ -115,19 +116,17 @@ if command -v aws_completer &> /dev/null; then
   complete -C aws_completer aws
   complete -C aws_completer sam
 fi
+
 # }}}
 
 # 5.0 - Integrations {{{
 #
-(( $+commands[nvim] )) && EDITOR=nvim || EDITOR=vi
-(( $+commands[most])) && PAGER=most || PAGER=less
-(( $+commands[exa] )) && alias ls='exa'
 (( ${+commands[fzf]} )) || ~[fzf]/install --bin
 
 GPG_TTY=$(tty)
 export GPG_TTY
-export PAGER
-export EDITOR
+export PAGER=less
+export EDITOR=nvim
 export FZF_COMPLETION_TRIGGER=';;'
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
@@ -139,10 +138,11 @@ fi
 test -e ~/.p10k.zsh && source ~/.p10k.zsh
 
 alias v='vi'
-alias nv='nvim'
+alias nvim='~/opt/nvim-macos/bin/nvim'
 alias twr='gittower'
 alias lzg='lazygit'
 alias po='poetry'
+alias ls='exa'
 
 # }}}
 
