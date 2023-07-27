@@ -542,6 +542,16 @@
                         },
                         {
                             "from": {
+                                "key_code": "j"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "n"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
                                 "key_code": "k"
                             },
                             "to": [
@@ -557,6 +567,36 @@
                             "to": [
                                 {
                                     "key_code": "f18"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "l"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "o"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "n"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "j"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "o"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "l"
                                 }
                             ]
                         },
@@ -1014,6 +1054,55 @@
                                 "to_if_alone": [
                                     {
                                         "key_code": "caps_lock"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Shift_L tap -> '(', Shift_R tap -> ')'",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "left_shift",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": {
+                                    "key_code": "left_shift"
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "9",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "right_shift",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": {
+                                    "key_code": "right_shift"
+                                },
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "0",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -2327,6 +2416,20 @@
                         "is_pointing_device": true,
                         "product_id": 45108,
                         "vendor_id": 1133
+                    },
+                    "ignore": true,
+                    "manipulate_caps_lock_led": false,
+                    "simple_modifications": [],
+                    "treat_as_built_in_keyboard": false
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": false,
+                        "is_pointing_device": true,
+                        "product_id": 53252,
+                        "vendor_id": 16700
                     },
                     "ignore": true,
                     "manipulate_caps_lock_led": false,

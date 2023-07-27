@@ -11,18 +11,21 @@
 # Start profiling
 zmodload zsh/zprof  
 
+# Initialize Zcomet
 if [[ ! -f ${ZDOTDIR}/.zcomet/bin/zcomet.zsh ]]; then
 	command git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR}/.zcomet/bin
 fi
 source ${ZDOTDIR}/.zcomet/bin/zcomet.zsh
 
+# Load local settings
 [ -f $ZDOTDIR/.zlocal.zsh ] && source ${ZDOTDIR}/.zlocal.zsh
 
-# Function Paths 
+# Autoload functions
 fpath+="${HOME}/.local/share/zsh/functions"
 fpath+="${ZDOTDIR}/.zfunc"
 autoload -Uz $fpath[1]/*(.:t)
 fpath+="$(brew --prefix)/share/zsh/site-functions" 
+
 # }}}
 
 # 3.0 - Completion {{{
@@ -35,6 +38,7 @@ setopt menu_complete			# Automatically highlight first element of completion men
 setopt auto_list				# Automatically list choices on ambiguous completion.
 setopt complete_in_word			# Complete from both ends of a word.
 setopt no_list_beep				# Don't beep when listing choices on ambiguous completion
+
 zstyle ':completion:*' completer _extensions _complete _approximate
 # Use cache for commands using cache
 zstyle ':completion:*' use-cache on
@@ -81,23 +85,26 @@ bindkey -M menuselect '^xu' undo                           	# Undo
 
 # {{{ 2.0 - Plugins 
 zcomet load romkatv/powerlevel10k		
+
+zcomet load ohmyzsh plugins/dash
 zcomet load ohmyzsh plugins/direnv
 zcomet load ohmyzsh plugins/fd
-zcomet trigger gh ohmyzsh plugins/gh
-zcomet load ohmyzsh plugins/iterm2
 zcomet load ohmyzsh plugins/gnu-utils
 zcomet load ohmyzsh plugins/gpg-agent
+zcomet load ohmyzsh plugins/git
+zcomet load ohmyzsh plugins/history-substring-search
+zcomet load ohmyzsh plugins/iterm2
+zcomet load ohmyzsh plugins/kubectl
 zcomet load ohmyzsh plugins/ripgrep
 zcomet load ohmyzsh plugins/rust
 zcomet load ohmyzsh plugins/ssh-agent
 zcomet load ohmyzsh plugins/rust
 zcomet load ohmyzsh plugins/zoxide
-zcomet load ohmyzsh plugins/git
-zcomet load ohmyzsh plugins/dash
 
-zcomet trigger tmux ohmyzsh plugins/tmux
+zcomet trigger gh ohmyzsh plugins/gh
 zcomet trigger npm ohmyzsh plugins/npm
 zcomet trigger nvm ohmyzsh plugins/nvm
+zcomet trigger tmux ohmyzsh plugins/tmux
 
 zcomet snippet OMZ::lib/directories.zsh
 zcomet snippet OMZ::plugins/1password/1password.plugin.zsh
@@ -107,9 +114,11 @@ zcomet load zsh-users/zsh-autosuggestions
 zcomet load zsh-users/zsh-syntax-highlighting	
 zcomet load zsh-users/zsh-completions			
 zcomet load softmoth/zsh-vim-mode
+
 zcomet compinit 
 
 zcomet load junegunn/fzf shell completion.zsh key-bindings.zsh
+(( ${+commands[fzf]} )) || ~[fzf]/install --bin
 
 if command -v aws_completer &> /dev/null; then
   autoload -Uz bashcompinit && bashcompinit
@@ -121,7 +130,6 @@ fi
 
 # 5.0 - Integrations {{{
 #
-(( ${+commands[fzf]} )) || ~[fzf]/install --bin
 
 GPG_TTY=$(tty)
 export GPG_TTY
@@ -135,14 +143,17 @@ if [[ $(uname) == 'Darwin' ]]; then
 	export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
 fi
 
+# Load p10k prompt config
 test -e ~/.p10k.zsh && source ~/.p10k.zsh
 
+# Aliases
 alias v='vi'
 alias nvim='~/opt/nvim-macos/bin/nvim'
 alias twr='gittower'
 alias lzg='lazygit'
 alias po='poetry'
 alias ls='exa'
+alias wstt='wezterm cli set-tab-title'
 
 # }}}
 
@@ -186,6 +197,7 @@ setopt ignore_eof		# Don't exit on EOF
 setopt no_bg_nice		# Don't run bg jobs at a lower priority
 setopt no_hup			# Don't kill jobs when the shell exits
 setopt notify			# notify when background job finishes				
+
 
 bindkey -M vicmd '^h' run-help				# [N] <Ctrl-H> : show man page for current command 								
 bindkey -M viins '^h' run-help				# [I] <Ctrl-H> : show man page for current command 								
