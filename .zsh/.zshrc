@@ -108,7 +108,9 @@ zcomet trigger tmux ohmyzsh plugins/tmux
 
 zcomet snippet OMZ::lib/directories.zsh
 zcomet snippet OMZ::plugins/1password/1password.plugin.zsh
-zcomet snippet OMZ::plugins/multipass/multipass.plugin.zsh
+zcomet snippet OMZ::plugins/copyfile/copyfile.plugin.zsh
+zcomet snippet OMZ::plugins/copypath/copypath.plugin.zsh
+
 
 zcomet load zsh-users/zsh-autosuggestions			
 zcomet load zsh-users/zsh-syntax-highlighting	

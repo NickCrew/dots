@@ -11,8 +11,10 @@ if [ "$OS" = "Darwin" ]; then
 	  fi
 
 	brew install \
-		ansible \
-		mas
+		mas \
+		terminal-notifier \
+		pygments
+
 
 	brew tap epk/epk
 	brew install --cask font-sf-mono-nerd-font

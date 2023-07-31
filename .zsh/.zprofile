@@ -23,3 +23,6 @@ fi
 
 # Created by `pipx` on 2023-06-02 02:11:01
 export PATH="$PATH:/Users/nick/.local/bin"
+
+# Added by OrbStack: command-line tools and integration
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :
