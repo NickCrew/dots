@@ -1,0 +1,61 @@
+# vim: ft=gitconfig
+
+[user]
+	name = Nick Ferguson
+	email = ncf@nickferguson.dev
+	signingkey = 37E8BD2776ECD65DF2B3F0B0F0D5D8102C773742
+
+[github]
+	user = NickCrew
+
+[commit]
+	gpgsign = false
+
+[gpg]
+	program = /usr/local/bin/gpg
+
+[init]
+	defaultBranch = master
+
+[color]
+	ui = auto
+
+[core]
+	excludesfile = ~/.config/git/global_ignore
+	ignorecase = false
+	autocrlf = false
+	editor = nvim
+	safecrlf = false
+	quotepath = false
+	preloadindex = true
+
+[push]
+	# When pushing code, always push only your current branch to a branch of the same name
+	default = current
+
+[fetch]
+	# Automatically prune deleted branches from your local copy when you fetch (or pull)
+	prune = true
+	writeCommitGraph = true
+
+[pull]
+	rebase = true
+
+[log]
+	# show branch names with git log
+	decorate = true
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[include]
+	path = ~/.config/git/ksdiff
+
+[include]
+	path = ~/.config/git/alias
+
+[includeIf "gitdir:/Users/nick/code/"]
+	 path = ~/.config/git/local

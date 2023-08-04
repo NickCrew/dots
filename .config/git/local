@@ -1,0 +1,17 @@
+# -*- mode: gitconfig; -*-
+# vim: set filetype=gitconfig:
+
+
+[user]
+	name = Nick Ferguson
+	email = nick.ferguson@threatx.com
+
+
+[url "ssh://git@github.com/"]
+        insteadOf = https://github.com/
+
+[commit]
+	gpgsign = true
+
+[init]
+	defaultBranch = main
