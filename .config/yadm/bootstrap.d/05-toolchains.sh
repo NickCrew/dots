@@ -1,6 +1,8 @@
 #!/bin/bash
 
 OS=$(uname -s)
+PY=3.11.4
+
 # Using Ansible for Docker Registry Load Testing
 #
 function install_toolchain_brew() {
@@ -21,23 +23,37 @@ function install_toolchain_rust () {
 }
 
 function install_toolchain_node() {
-if ! command -v node >/dev/null; then
+  if ! command -v node >/dev/null; then
 	if ! command -v nvm >dev/null; then
 		PROFILE=/dev/null curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
 	fi
 	nvm install node
-fi
+    npm install -g \
+      bitwarden \
+      taplo \
+      ansible-language-server \
+      asl-validator \
+      eslint \
+      markdown-toc \
+      prettier \
+      pyright \
+      remark
+  fi
 }
 
 function install_toolchain_python() {
-  if ! command -v pyenv >/dev/null; then
-    curl https://pyenv.run | bash
-  fi
+  curl https://pyenv.run | bash
 
-  if ! command -v poetry >/dev/null; then
-    curl -sSL https://install.python-poetry.org | python3 -
-  fi
+  pyenv install $PY
+  pyenv global $PY
+
+  brew install pipx
+  pipx ensurepath
+
+  curl -sSL https://install.python-poetry.org | python3 -
+
 }
+
 
 install_toolchain_brew
 install_toolchain_rust

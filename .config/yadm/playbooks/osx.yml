@@ -5,31 +5,34 @@
 
   tasks:
 
+  - name: Install Packages
+    tags: 
+      - packages
+      - always
+    block: 
+
     - name: Add custom homebrew repos
       community.general.homebrew_tap:
-        name: [
-          epk/epk,
-          homebrew/cask-versions,
-        ]
+        name: 
+          - epk/epk
+          - homebrew/cask-versions
 
     - name: Install core packages via brew casks
       community.general.homebrew_cask:
         name: "{{ item }}"
       with_items:
         - 1password
-        - iterm2
         - font-sf-mono-nerd-font
+        - github
+        - iterm2
         - ngrok
         - slack
-        - github
         - wezterm-nightly
         - zoom
 
     - name: Install homebrew packages
       community.general.homebrew:
         name: [
-          'autoconf',
-          'automake',
           'aws-iam-authenticator',
           'awscli',
           'coreutils',
@@ -66,10 +69,12 @@
       community.general.cargo:
         name: "{{ item }}"
       with_items:
-        - exa
-        - rg
-        - zoxide
-        - stylua
-        - bat
         -	broot 
-	distant
+        -	distant
+        - bat
+        - code-minimap
+        - exa
+        - fzf
+        - rg
+        - stylua
+        - zoxide
