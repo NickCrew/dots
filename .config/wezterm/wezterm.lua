@@ -11,7 +11,7 @@ end
 
 return {
 	font = wezterm.font("SFMono Nerd Font", { weight = "Regular" }),
-	font_size = 16,
+	font_size = 17,
 	color_scheme = "Tokyo Night Storm (Gogh)",
 	leader = {
 		key = "a",

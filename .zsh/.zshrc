@@ -84,11 +84,16 @@ bindkey -M menuselect '^xu' undo                           	# Undo
 # }}}
 
 # {{{ 2.0 - Plugins 
+
+export CLOUDSDK_HOME=$HOME/opt/google-cloud-sdk
+
 zcomet load romkatv/powerlevel10k		
 
 zcomet load ohmyzsh plugins/dash
 zcomet load ohmyzsh plugins/direnv
 zcomet load ohmyzsh plugins/fd
+zcomet load ohmyzsh plugins/gcloud
+zcomet load ohmyzsh plugins/golang
 zcomet load ohmyzsh plugins/gnu-utils
 zcomet load ohmyzsh plugins/gpg-agent
 zcomet load ohmyzsh plugins/git
@@ -157,7 +162,12 @@ alias po='poetry'
 alias ls='exa'
 alias wstt='wezterm cli set-tab-title'
 
+alias la='ls -ah'
+alias ll='ls -lah'
+alias l='ls -lh'
+
 # }}}
+
 
 # 8.0 - History {{{
 #
@@ -185,9 +195,6 @@ unsetopt hist_beep				# Shut up shut up shut up
 
 # 9.0 - Misc  {{{
 
-alias la='ls -ah'
-alias ll='ls -lah'
-alias l='ls -lh'
 
 unsetopt beep			# shut up shut up shut up
 unsetopt clobber		# Disallow overwriting existing files
