@@ -1,6 +1,13 @@
-# Runs after .zshrc for interactive shells
+#----------------------------------------------------
+# File: .zlogin
+#
+# Loaded For:
+#   ☑ Interactive Shells
+#   ☑ Non-Interactive Shells
+#
+# Load Order:
+#       zprofile  → zshrc  →  zlogin* 
+#-----------------------------------------------------
 
 
-
-typeset -u PATH
 

@@ -1,15 +1,30 @@
 # vim: foldmethod=marker
+# ------------------------------------------------------------------------------
+# File: 
+#   .zshrc 
 #
-# ------------------------------------------------------------------------------
-# File: .zshrc 
-# Description: Loaded for ZSH interactive sessions
+# Loaded For:
+#   ☑ Interactive Shells
+#   ☐ Non-Interactive Shells
+#
+## Load Order:
+#       zprofile  → zshrc* →  zlogin*
+
 # ------------------------------------------------------------------------------
 
 
-# 1.0 - Initialization  {{{
+# 0.0 - Pre {{{
 
 # Start profiling
 zmodload zsh/zprof  
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
+
 
 # Initialize Zcomet
 if [[ ! -f ${ZDOTDIR}/.zcomet/bin/zcomet.zsh ]]; then
@@ -17,18 +32,20 @@ if [[ ! -f ${ZDOTDIR}/.zcomet/bin/zcomet.zsh ]]; then
 fi
 source ${ZDOTDIR}/.zcomet/bin/zcomet.zsh
 
-# Load local settings
-[ -f $ZDOTDIR/.zlocal.zsh ] && source ${ZDOTDIR}/.zlocal.zsh
+if [ -f $ZDOTDIR/.zlocal.zsh ]; then
+  source ${ZDOTDIR}/.zlocal.zsh
+fi
 
 # Autoload functions
 fpath+="${HOME}/.local/share/zsh/functions"
 fpath+="${ZDOTDIR}/.zfunc"
+fpath+="${ZSH_CACHE_DIR}/completions"
 autoload -Uz $fpath[1]/*(.:t)
 fpath+="$(brew --prefix)/share/zsh/site-functions" 
 
 # }}}
 
-# 3.0 - Completion {{{
+# 2.0 - Completion {{{
 
 zmodload zsh/complist  # Should be called before compinit
 
@@ -83,9 +100,7 @@ bindkey -M menuselect '^xu' undo                           	# Undo
 
 # }}}
 
-# {{{ 2.0 - Plugins 
-
-export CLOUDSDK_HOME=$HOME/opt/google-cloud-sdk
+# {{{ 3.0 - Plugins 
 
 zcomet load romkatv/powerlevel10k		
 
@@ -93,20 +108,19 @@ zcomet load ohmyzsh plugins/dash
 zcomet load ohmyzsh plugins/direnv
 zcomet load ohmyzsh plugins/fd
 zcomet load ohmyzsh plugins/gcloud
+zcomet load ohmyzsh plugins/gh
 zcomet load ohmyzsh plugins/golang
 zcomet load ohmyzsh plugins/gnu-utils
 zcomet load ohmyzsh plugins/gpg-agent
 zcomet load ohmyzsh plugins/git
 zcomet load ohmyzsh plugins/history-substring-search
 zcomet load ohmyzsh plugins/iterm2
-zcomet load ohmyzsh plugins/kubectl
 zcomet load ohmyzsh plugins/ripgrep
 zcomet load ohmyzsh plugins/rust
 zcomet load ohmyzsh plugins/ssh-agent
 zcomet load ohmyzsh plugins/rust
 zcomet load ohmyzsh plugins/zoxide
 
-zcomet trigger gh ohmyzsh plugins/gh
 zcomet trigger npm ohmyzsh plugins/npm
 zcomet trigger nvm ohmyzsh plugins/nvm
 zcomet trigger tmux ohmyzsh plugins/tmux
@@ -115,7 +129,6 @@ zcomet snippet OMZ::lib/directories.zsh
 zcomet snippet OMZ::plugins/1password/1password.plugin.zsh
 zcomet snippet OMZ::plugins/copyfile/copyfile.plugin.zsh
 zcomet snippet OMZ::plugins/copypath/copypath.plugin.zsh
-
 
 zcomet load zsh-users/zsh-autosuggestions			
 zcomet load zsh-users/zsh-syntax-highlighting	
@@ -135,42 +148,8 @@ fi
 
 # }}}
 
-# 5.0 - Integrations {{{
-#
+# 4.0 - History {{{
 
-GPG_TTY=$(tty)
-export GPG_TTY
-export PAGER=less
-export EDITOR=nvim
-export FZF_COMPLETION_TRIGGER=';;'
-export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
-
-if [[ $(uname) == 'Darwin' ]]; then
-	export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
-	export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
-fi
-
-# Load p10k prompt config
-test -e ~/.p10k.zsh && source ~/.p10k.zsh
-
-# Aliases
-alias v='vi'
-alias nvim='~/opt/nvim-macos/bin/nvim'
-alias twr='gittower'
-alias lzg='lazygit'
-alias po='poetry'
-alias ls='exa'
-alias wstt='wezterm cli set-tab-title'
-
-alias la='ls -ah'
-alias ll='ls -lah'
-alias l='ls -lh'
-
-# }}}
-
-
-# 8.0 - History {{{
-#
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=1000000
 SAVEHIST=1000000
@@ -193,24 +172,47 @@ unsetopt hist_beep				# Shut up shut up shut up
 
 # }}}
 
-# 9.0 - Misc  {{{
+# 5.0 - Settings {{{
 
+GPG_TTY=$(tty)
+export GPG_TTY
+export PAGER=less
+export EDITOR=nvim
+export FZF_COMPLETION_TRIGGER=';;'
+export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+
+alias v='vi'
+alias po='poetry'
+alias ls='exa'
+alias la='ls -ah'
+alias ll='ls -lah'
+alias l='ls -lh'
+alias wstt='wezterm cli set-tab-title'
+
+if (( $+commands[kubectl])); then
+  alias k='kubectl'
+  compdef k=kubectl
+fi
+
+(( $+commands[yadm] )) && compdef yadm=git
 
 unsetopt beep			# shut up shut up shut up
 unsetopt clobber		# Disallow overwriting existing files
-
 setopt local_traps		# Allow functions to have local traps
 setopt local_options	# Allow fucntions to have local options
-
 setopt ignore_eof		# Don't exit on EOF
 setopt no_bg_nice		# Don't run bg jobs at a lower priority
 setopt no_hup			# Don't kill jobs when the shell exits
 setopt notify			# notify when background job finishes				
 
-
 bindkey -M vicmd '^h' run-help				# [N] <Ctrl-H> : show man page for current command 								
 bindkey -M viins '^h' run-help				# [I] <Ctrl-H> : show man page for current command 								
 bindkey -M viins '^e' autosuggest-accept	# [I] <Ctrl-E> : Accept and complete auto-suggestion
+
 # }}}
 
+# Post {{{ 
 
+[[ ! -f $HOME/.config/op/plugins.sh ]] || source $HOME/.config/op/plugins.sh
+[[ ! -f $HOME/.zsh/.p10k.zsh ]] || source $HOME/.zsh/.p10k.zsh
+# }}}

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 OS=$(uname -s)
-PY=3.11.4
+PYVERSION=${PYVERSION:-3.11.4}
 
 # Using Ansible for Docker Registry Load Testing
 #
@@ -16,48 +16,74 @@ function install_toolchain_brew() {
   fi
 }
 
+function install_brew_packages() {
+  brew install \
+    ansible \
+    ansible-lint \
+    autoconf \
+    automake \
+    aws-iam-authenticator \
+    jq \ 
+    k9s \
+    kube-linter \ 
+    kubectl \ 
+    kubectx \
+    luarocks \
+    nvm \
+    pipx \ 
+    pkg-config
+    pyenv \
+    pyenv-virtualenv \
+    pyenv-virtualenvwrapper \
+    tree-sitter \
+    yadm 
+
+}
+
 function install_toolchain_rust () {
   if ! command -v cargo >/dev/null; then
       curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
   fi
+  source ~/.cargo/env
+  cargo install \
+    broot \
+    exa \
+    fd-find \
+    mcfly \
+    ripgrep \
+    zoxide 
 }
 
 function install_toolchain_node() {
-  if ! command -v node >/dev/null; then
-	if ! command -v nvm >dev/null; then
+  if (( ! $+commands[node] )); then
+    if (( ! $+commands[nvm] )); then
 		PROFILE=/dev/null curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
 	fi
 	nvm install node
-    npm install -g \
-      bitwarden \
-      taplo \
-      ansible-language-server \
-      asl-validator \
-      eslint \
-      markdown-toc \
-      prettier \
-      pyright \
-      remark
   fi
 }
 
 function install_toolchain_python() {
-  curl https://pyenv.run | bash
+  # Return immediately if poetry is not found
+  if (( $+commands[pyenv] )); then
 
-  pyenv install $PY
-  pyenv global $PY
+    pyenv install $PYVERSION
+    pyenv global $PYVERSION
 
-  brew install pipx
-  pipx ensurepath
+    brew install pipx
+    pipx ensurepath
 
-  curl -sSL https://install.python-poetry.org | python3 -
+    curl -sSL https://install.python-poetry.org | python3 -
 
+  fi
 }
 
+# Install Neovim
+function install_neovim() {
+  git clone git@github.com:NickCrew/nvim-pde.git 
+  ~/.config/nvim/tools/update-nvim-nightly
+  npm install -g neovim
+}
 
-install_toolchain_brew
-install_toolchain_rust
-install_toolchain_node
-install_toolchian_python
 
 

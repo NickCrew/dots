@@ -3,7 +3,6 @@
 [user]
 	name = Nick Ferguson
 	email = ncf@nickferguson.dev
-	signingkey = 37E8BD2776ECD65DF2B3F0B0F0D5D8102C773742
 
 [github]
 	user = NickCrew
@@ -12,7 +11,7 @@
 	gpgsign = false
 
 [gpg]
-	program = /usr/local/bin/gpg
+	program = /opt/homebrew/bin/gpg
 
 [init]
 	defaultBranch = master
@@ -57,5 +56,7 @@
 [include]
 	path = ~/.config/git/alias
 
-[includeIf "gitdir:/Users/nick/code/"]
+[includeIf "gitdir:/Users/nick/Work/"]
 	 path = ~/.config/git/local
+[mergetool]
+	keepBackup = true

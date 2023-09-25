@@ -3,16 +3,17 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
+
 local is_dark = wezterm.gui.get_appearance():find("Dark")
 
-local function theme() 
-  return is_dark and 'Tokyo Night Storm (Gogh)' or 'Tokyo Night Light (Gogh)'
+local theme = function()
+  return is_dark and 'Rosé Pine Moon (Gogh)' or 'Rosé Pine Dawn (Gogh)'
 end
 
 return {
-	font = wezterm.font("SFMono Nerd Font", { weight = "Regular" }),
+	font = wezterm.font("SFMono Nerd Font", { weight = "Medium" }),
 	font_size = 17,
-	color_scheme = "Tokyo Night Storm (Gogh)",
+    color_scheme = theme(),
 	leader = {
 		key = "a",
 		mods = "CTRL|SHIFT",
@@ -21,6 +22,7 @@ return {
 	line_height = 1.25,
 	enable_scroll_bar = false,
 	initial_cols = 110,
+    scrollback_lines = 10000,
 	initial_rows = 25,
 	pane_focus_follows_mouse = false,
 	warn_about_missing_glyphs = true,

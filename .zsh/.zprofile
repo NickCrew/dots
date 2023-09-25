@@ -1,28 +1,19 @@
-# Runs before .zshrc 
+# ----------------------------------------------
+# File: 
+#   $ZDOTDIR/.zprofile (*)
+#
+# Availability :
+#   ☑ Interactive Shellsⁱ
+#   ☑ Non-interactive Shells
+#
+# Load Order:    
+#     zprofile* →  zshrc → zlogin
+#
+# ------------------------------------------------------------------------------
 
-
-if [[ $(uname -s) = 'Darwin' ]]; then 
-	if [[ $(uname -m) = "x86_64" ]]; then
-		eval "$(/usr/local/HomeBrew/bin/brew shellenv)"
-	else
-		eval "$(/opt/homebrew/bin/brew shellenv)"
-	fi
-fi
-
-if command -v go >/dev/null; then
-	export GOPATH="${GOPATH:-$HOME/go}"
-	export PATH="${PATH}:${GOPATH}"
-fi
-
-if command -v pyenv >/dev/null; then
+# Pyenv
+if (( ! $+commands[pyenv] )); then
 	export PYENV_ROOT="${PYENV_ROOT:-$HOME/.pyenv}"
-	export PATH="${PYENV_ROOT}/bin:${PATH}"
-	eval "$(pyenv init -)"
+    export PATH="${PYENV_ROOT}/bin:${PATH}"
+	eval "$(pyenv init --path)"
 fi
-
-
-# Created by `pipx` on 2023-06-02 02:11:01
-export PATH="$PATH:/Users/nick/.local/bin"
-
-# Added by OrbStack: command-line tools and integration
-source ~/.orbstack/shell/init.zsh 2>/dev/null || :
