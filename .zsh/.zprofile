@@ -12,8 +12,6 @@
 # ------------------------------------------------------------------------------
 
 # Pyenv
-if (( ! $+commands[pyenv] )); then
-	export PYENV_ROOT="${PYENV_ROOT:-$HOME/.pyenv}"
-    export PATH="${PYENV_ROOT}/bin:${PATH}"
-	eval "$(pyenv init --path)"
-fi
+export PYENV_ROOT="${PYENV_ROOT:-$HOME/.pyenv}"
+export PATH="${PYENV_ROOT}/bin:${PATH}"
+eval "$(pyenv init --path)"

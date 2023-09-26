@@ -121,6 +121,7 @@ zcomet load ohmyzsh plugins/golang
 zcomet load ohmyzsh plugins/gnu-utils
 zcomet load ohmyzsh plugins/gpg-agent
 zcomet load ohmyzsh plugins/git
+zcomet load ohmyzsh plugins/pyenv
 zcomet load ohmyzsh plugins/history-substring-search
 zcomet load ohmyzsh plugins/iterm2
 zcomet load ohmyzsh plugins/ripgrep
@@ -225,3 +226,5 @@ bindkey -M viins '^e' autosuggest-accept	# [I] <Ctrl-E> : Accept and complete au
 [[ ! -f $HOME/.zsh/.p10k.zsh ]] || source $HOME/.zsh/.p10k.zsh
 # }}}
 
+# To customize prompt, run `p10k configure` or edit ~/.zsh/.p10k.zsh.
+[[ ! -f ~/.zsh/.p10k.zsh ]] || source ~/.zsh/.p10k.zsh

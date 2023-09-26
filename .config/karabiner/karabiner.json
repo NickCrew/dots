@@ -3,7 +3,7 @@
         "ask_for_confirmation_before_quitting": true,
         "check_for_updates_on_startup": true,
         "show_in_menu_bar": true,
-        "show_profile_name_in_menu_bar": true,
+        "show_profile_name_in_menu_bar": false,
         "unsafe_ui": false
     },
     "profiles": [
@@ -1074,47 +1074,17 @@
                         ]
                     },
                     {
-                        "description": "Shift_L tap -> '(', Shift_R tap -> ')'",
+                        "description": "keypad_0 to Copy",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "left_shift",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
+                                    "key_code": "keypad_0"
                                 },
-                                "to": {
-                                    "key_code": "left_shift"
-                                },
-                                "to_if_alone": [
+                                "to": [
                                     {
-                                        "key_code": "9",
+                                        "key_code": "c",
                                         "modifiers": [
-                                            "left_shift"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "right_shift",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": {
-                                    "key_code": "right_shift"
-                                },
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "0",
-                                        "modifiers": [
-                                            "left_shift"
+                                            "command"
                                         ]
                                     }
                                 ],
@@ -1123,25 +1093,18 @@
                         ]
                     },
                     {
-                        "description": "Caps Lock → Hyper Key (⌃⌥⇧⌘) (Caps Lock if alone)",
+                        "description": "keypad_plus to Paste",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "caps_lock"
+                                    "key_code": "keypad_plus"
                                 },
                                 "to": [
                                     {
-                                        "key_code": "left_shift",
+                                        "key_code": "v",
                                         "modifiers": [
-                                            "left_command",
-                                            "left_control",
-                                            "left_option"
+                                            "command"
                                         ]
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "caps_lock"
                                     }
                                 ],
                                 "type": "basic"
@@ -1487,21 +1450,6 @@
                     "simple_modifications": [
                         {
                             "from": {
-                                "key_code": "caps_lock"
-                            },
-                            "to": [
-                                {
-                                    "sticky_modifier": {
-                                        "fn": "toggle"
-                                    }
-                                },
-                                {
-                                    "key_code": "fn"
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
                                 "key_code": "delete_forward"
                             },
                             "to": [
@@ -1546,7 +1494,7 @@
                             },
                             "to": [
                                 {
-                                    "key_code": "f17"
+                                    "key_code": "keypad_0"
                                 }
                             ]
                         },
@@ -1557,16 +1505,6 @@
                             "to": [
                                 {
                                     "key_code": "delete_forward"
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
-                                "key_code": "keypad_plus"
-                            },
-                            "to": [
-                                {
-                                    "key_code": "f16"
                                 }
                             ]
                         },
@@ -1617,6 +1555,21 @@
                             "to": [
                                 {
                                     "key_code": "f14"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "caps_lock"
+                            },
+                            "to": [
+                                {
+                                    "sticky_modifier": {
+                                        "fn": "toggle"
+                                    }
+                                },
+                                {
+                                    "key_code": "fn"
                                 }
                             ]
                         }
@@ -1758,10 +1711,10 @@
                         "product_id": 45057,
                         "vendor_id": 13651
                     },
-                    "ignore": true,
-                    "manipulate_caps_lock_led": true,
+                    "ignore": false,
+                    "manipulate_caps_lock_led": false,
                     "simple_modifications": [],
-                    "treat_as_built_in_keyboard": false
+                    "treat_as_built_in_keyboard": true
                 },
                 {
                     "disable_built_in_keyboard_if_exists": false,
@@ -1830,6 +1783,20 @@
                     },
                     "ignore": false,
                     "manipulate_caps_lock_led": true,
+                    "simple_modifications": [],
+                    "treat_as_built_in_keyboard": false
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": false,
+                        "is_pointing_device": false,
+                        "product_id": 34304,
+                        "vendor_id": 1452
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": false,
                     "simple_modifications": [],
                     "treat_as_built_in_keyboard": false
                 }
