@@ -1,3 +1,4 @@
+
 # vim: foldmethod=marker
 # ------------------------------------------------------------------------------
 # File: 
@@ -14,6 +15,13 @@
 
 
 # 0.0 - Pre {{{
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # Start profiling
 zmodload zsh/zprof  
@@ -216,3 +224,4 @@ bindkey -M viins '^e' autosuggest-accept	# [I] <Ctrl-E> : Accept and complete au
 [[ ! -f $HOME/.config/op/plugins.sh ]] || source $HOME/.config/op/plugins.sh
 [[ ! -f $HOME/.zsh/.p10k.zsh ]] || source $HOME/.zsh/.p10k.zsh
 # }}}
+
