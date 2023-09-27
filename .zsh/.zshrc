@@ -19,9 +19,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 # Start profiling
 zmodload zsh/zprof  
@@ -40,6 +40,8 @@ if [[ ! -f ${ZDOTDIR}/.zcomet/bin/zcomet.zsh ]]; then
 fi
 source ${ZDOTDIR}/.zcomet/bin/zcomet.zsh
 
+
+# Local configuration
 if [ -f $ZDOTDIR/.zlocal.zsh ]; then
   source ${ZDOTDIR}/.zlocal.zsh
 fi
@@ -121,7 +123,6 @@ zcomet load ohmyzsh plugins/golang
 zcomet load ohmyzsh plugins/gnu-utils
 zcomet load ohmyzsh plugins/gpg-agent
 zcomet load ohmyzsh plugins/git
-zcomet load ohmyzsh plugins/pyenv
 zcomet load ohmyzsh plugins/history-substring-search
 zcomet load ohmyzsh plugins/iterm2
 zcomet load ohmyzsh plugins/ripgrep
@@ -224,7 +225,6 @@ bindkey -M viins '^e' autosuggest-accept	# [I] <Ctrl-E> : Accept and complete au
 
 [[ ! -f $HOME/.config/op/plugins.sh ]] || source $HOME/.config/op/plugins.sh
 [[ ! -f $HOME/.zsh/.p10k.zsh ]] || source $HOME/.zsh/.p10k.zsh
+
 # }}}
 
-# To customize prompt, run `p10k configure` or edit ~/.zsh/.p10k.zsh.
-[[ ! -f ~/.zsh/.p10k.zsh ]] || source ~/.zsh/.p10k.zsh
