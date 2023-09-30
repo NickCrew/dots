@@ -14,6 +14,7 @@
 # ------------------------------------------------------------------------------
 
 
+# 0.0 - Pre {{{
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -45,29 +46,16 @@ if [ -f $ZDOTDIR/.zlocal.zsh ]; then
   source ${ZDOTDIR}/.zlocal.zsh
 fi
 
-
 # Autoload functions
-ZFUNCDIR=${ZFUNCDIR:-$ZDOTDIR/functions}
-fpath=($ZFUNCDIR $ZSH_CACHE_DIR/completions $fpath)
+fpath+="${HOME}/.local/share/zsh/functions"
+fpath+="${ZDOTDIR}/.zfunc"
+fpath+="${ZSH_CACHE_DIR}/completions"
 autoload -Uz $fpath[1]/*(.:t)
 fpath+="$(brew --prefix)/share/zsh/site-functions" 
 
+# }}}
 
-# Aliases
-(( $+commands[exa] )) && alias ls='exa'
-alias nvim='~/opt/nvim-macos/bin/nvim'
-alias la='ls -ah'
-alias ll='ls -lah'
-alias l='ls -lh'
-# wezterm
-alias wstt='wezterm cli set-tab-title'
-alias k='kubectl'
-
-# ZSH
-alias zshrc='${EDITOR:-vim} "${ZDOTDIR:-$HOME}"/.zshrc'
-alias zbench='for i in {1..10}; do /usr/bin/time zsh -lic exit; done'
-alias zdot='cd ${ZDOTDIR:-~}'
-
+# 2.0 - Completion {{{
 
 zmodload zsh/complist  # Should be called before compinit
 
@@ -168,17 +156,10 @@ if command -v aws_completer &> /dev/null; then
   complete -C aws_completer sam
 fi
 
-compdef k=kubectl
+# }}}
 
-eval "$(pyenv init --path)"
+# 4.0 - History {{{
 
-GPG_TTY=$(tty)
-export GPG_TTY
-export FZF_COMPLETION_TRIGGER=';;'
-export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
-
-
-# History
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=1000000
 SAVEHIST=1000000
@@ -186,7 +167,6 @@ HISTORY_IGNORE="pwd:ls:ll:la:.."
 PER_DIRECTORY_HISTORY_TOGGLE=^G
 HISTORY_BASE=$HOME/.directory_history
 
-# History
 setopt bang_hist				# Perform textual history expansion, csh-style, treating the character ‘!’ specially.
 setopt hist_no_functions		# Don't store function definitions
 setopt hist_no_store			# Don't store history (fc -l) command
@@ -200,6 +180,31 @@ setopt hist_reduce_blanks		# Remove superfluous blanks from each command line be
 setopt inc_append_History		# Add new lines to the history file immediately (do not wait until exit)
 unsetopt hist_beep				# Shut up shut up shut up
 
+# }}}
+
+# 5.0 - Settings {{{
+
+GPG_TTY=$(tty)
+export GPG_TTY
+export PAGER=less
+export EDITOR=nvim
+export FZF_COMPLETION_TRIGGER=';;'
+export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+
+alias v='vi'
+alias po='poetry'
+alias ls='exa'
+alias la='ls -ah'
+alias ll='ls -lah'
+alias l='ls -lh'
+alias wstt='wezterm cli set-tab-title'
+
+if (( $+commands[kubectl])); then
+  alias k='kubectl'
+  compdef k=kubectl
+fi
+
+(( $+commands[yadm] )) && compdef yadm=git
 
 unsetopt beep			# shut up shut up shut up
 unsetopt clobber		# Disallow overwriting existing files
@@ -210,19 +215,16 @@ setopt no_bg_nice		# Don't run bg jobs at a lower priority
 setopt no_hup			# Don't kill jobs when the shell exits
 setopt notify			# notify when background job finishes				
 
-
-#
-# Post 
-#
-
 bindkey -M vicmd '^h' run-help				# [N] <Ctrl-H> : show man page for current command 								
 bindkey -M viins '^h' run-help				# [I] <Ctrl-H> : show man page for current command 								
 bindkey -M viins '^e' autosuggest-accept	# [I] <Ctrl-E> : Accept and complete auto-suggestion
 
-# 1password cli
+# }}}
+
+# Post {{{ 
+
 [[ ! -f $HOME/.config/op/plugins.sh ]] || source $HOME/.config/op/plugins.sh
+[[ ! -f $HOME/.zsh/.p10k.zsh ]] || source $HOME/.zsh/.p10k.zsh
 
-# powerlevel10k prompt
-[[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
-
+# }}}
 
