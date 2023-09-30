@@ -1,5 +1,77 @@
 # vim: ft=gitconfig
-#
+
+[user]
+	name = Nick Ferguson
+	email = ncf@nickferguson.dev
+
+[github]
+	user = NickCrew
+
+[commit]
+	gpgsign = false
+
+[gpg]
+	program = /opt/homebrew/bin/gpg
+
+[init]
+	defaultBranch = master
+
+[color]
+	ui = auto
+
+[core]
+	excludesfile = ~/.global_gitignore
+	ignorecase = false
+	autocrlf = false
+	editor = nvim
+	safecrlf = false
+	quotepath = false
+	preloadindex = true
+
+[push]
+	# When pushing code, always push only your current branch to a branch of the same name
+	default = current
+
+[fetch]
+	# Automatically prune deleted branches from your local copy when you fetch (or pull)
+	prune = true
+	writeCommitGraph = true
+
+[pull]
+	rebase = true
+
+[log]
+	# show branch names with git log
+	decorate = true
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+
+[diff]
+	tool = Kaleidoscope
+
+[difftool]
+	prompt = false
+	trustExitCode = true
+
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+[merge]
+	tool = Kaleidoscope
+
+[mergetool]
+	keepBackup = false
+	prompt = false
+
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+
 [alias]
 	a = add
 	st = status -sb
@@ -93,4 +165,7 @@
 	# Cancel local commits in the branch: git fuck master
 	fuck = "!f() { git reset --hard origin/$1; }; f"	
 
+
+[includeIf "gitdir:/Users/nick/Work/"]
+	 path = ~/.gitlocal
 

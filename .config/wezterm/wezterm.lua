@@ -11,7 +11,7 @@ end
 
 return {
   font                           = wezterm.font("SFMono Nerd Font", { weight = "Medium" }),
-  font_size                      = 17,
+  font_size                      = 16.5,
   color_scheme                   = theme(),
   leader                         = {
     key = "a",
