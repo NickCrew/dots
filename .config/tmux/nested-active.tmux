@@ -11,7 +11,7 @@ alt_field_value_colour="colour15"
 clock="#[fg=$secondary_label_colour] [#[fg=$secondary_field_value_colour]%H:%M#[fg=$secondary_label_colour]] #{prefix_highlight}"
 
 # WINDOW NAMES (ANY)
-window_name="#[fg=$alt_fg_colour]#I#[fg=$primary_fg_colour] #{window_name} "
+window_name="#[fg=$alt_fg_colour] #I#[fg=$primary_fg_colour] #{window_name} "
 
 # WINDOW NAME (ACTIVE)
 active_window_name="#[bg=$primary_bg_colour]#[fg=$current_window_number_colour] #I#[fg=$secondary_label_colour] #{window_name} #[fg=$accent_fg_colour_alt]" 
@@ -27,6 +27,6 @@ window_index="#[fg=$secondary_label_colour][#[bg=$primary_bg_colour]#[fg=$second
 # APPLY NEW COLORS AND STATUS FORMAT
 #
 set -g status-right "$clock"
-set -g status-left "$whoami$window_index" 
+set -g status-left "$window_index" 
 set -g window-status-format "$window_name"
 set -g window-status-current-format "$active_window_name"

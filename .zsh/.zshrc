@@ -156,6 +156,7 @@ if command -v aws_completer &> /dev/null; then
   complete -C aws_completer sam
 fi
 
+
 # }}}
 
 # 4.0 - History {{{
@@ -223,6 +224,7 @@ bindkey -M viins '^e' autosuggest-accept	# [I] <Ctrl-E> : Accept and complete au
 
 # Post {{{ 
 
+autoload br
 [[ ! -f $HOME/.config/op/plugins.sh ]] || source $HOME/.config/op/plugins.sh
 [[ ! -f $HOME/.zsh/.p10k.zsh ]] || source $HOME/.zsh/.p10k.zsh
 
