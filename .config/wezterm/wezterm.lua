@@ -10,8 +10,8 @@ local theme = function()
 end
 
 return {
-  font                           = wezterm.font("OperatorMono Nerd Font", { }),
-  font_size                      = 17,
+  font                           = wezterm.font("SFMono Nerd Font"),
+  font_size                      = 16,
   color_scheme                   = theme(),
   leader                         = {
     key = "a",
@@ -74,8 +74,8 @@ return {
     { key = 'RightArrow', mods = 'SUPER',      action = act.ActivatePaneDirection 'Right', },
     { key = 'UpArrow',    mods = 'SUPER',      action = act.ActivatePaneDirection 'Up', },
     { key = 'DownArrow',  mods = 'SUPER',      action = act.ActivatePaneDirection 'Down', },
-    { key = 'PageDown',   mods = 'SHIFT',      action = act.ScrollByPage(1) },
-    { key = 'PageUp',     mods = 'SHIFT',      action = act.ScrollByPage(-1) },
+    { key = 'PageDown',   mods = '',      action = act.ScrollByPage(1) },
+    { key = 'PageUp',     mods = '',      action = act.ScrollByPage(-1) },
     { key = "1",          mods = "SUPER",      action = act({ ActivateTab = 0 }) },
     { key = "2",          mods = "SUPER",      action = act({ ActivateTab = 1 }) },
     { key = "3",          mods = "SUPER",      action = act({ ActivateTab = 2 }) },
