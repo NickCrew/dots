@@ -1,15 +1,12 @@
-
 # vim: foldmethod=marker
 # ------------------------------------------------------------------------------
-# File: 
-#   .zshrc 
+# 
+# NAME: .zshrc 
 #
-# Loaded For:
-#   ☑ Interactive Shells
-#   ☐ Non-Interactive Shells
+# ☑ Interactive Shells
+# ☐ Non-Interactive Shells
 #
-## Load Order:
-#       zprofile  → zshrc* →  zlogin*
+# ORDER: zprofile  → zshrc* →  zlogin*
 
 # ------------------------------------------------------------------------------
 
@@ -32,16 +29,12 @@ fi
 source ${ZDOTDIR}/.zcomet/bin/zcomet.zsh
 
 
-
-
 # Autoload functions
 fpath+="${ZDOTDIR}/functions"
+fpath+="${ZSH_CACHE_DIR}/completions"
 autoload -Uz $fpath[1]/*(.:t)
 fpath+="$(brew --prefix)/share/zsh/site-functions" 
-fpath+="${ZSH_CACHE_DIR}/completions"
 
-
-zmodload zsh/complist  # Should be called before compinit
 
 zcomet snippet ${ZDOTDIR}/snippets/completion.zsh
 

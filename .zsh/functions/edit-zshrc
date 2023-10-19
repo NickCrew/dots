@@ -1,1 +1,3 @@
-nvim $ZDOTDIR/.zshrc
+cd ${ZDOTDIR:-$HOME}
+nvim .zshrc
+cd -

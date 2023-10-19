@@ -572,31 +572,11 @@
                         },
                         {
                             "from": {
-                                "key_code": "l"
-                            },
-                            "to": [
-                                {
-                                    "key_code": "o"
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
                                 "key_code": "n"
                             },
                             "to": [
                                 {
                                     "key_code": "j"
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
-                                "key_code": "o"
-                            },
-                            "to": [
-                                {
-                                    "key_code": "l"
                                 }
                             ]
                         },
