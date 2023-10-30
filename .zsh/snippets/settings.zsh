@@ -18,6 +18,7 @@ setopt notify			# notify when background job finishes
 
 alias v='vi'
 alias po='poetry'
+alias lg='lazygit'
 alias ls='exa'
 alias la='ls -ah'
 alias ll='ls -lah'

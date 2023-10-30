@@ -29,6 +29,8 @@ fi
 source ${ZDOTDIR}/.zcomet/bin/zcomet.zsh
 
 
+zcomet snippet ${ZDOTDIR}/snippets/completion.zsh
+
 # Autoload functions
 fpath+="${ZDOTDIR}/functions"
 fpath+="${ZSH_CACHE_DIR}/completions"
@@ -36,7 +38,6 @@ autoload -Uz $fpath[1]/*(.:t)
 fpath+="$(brew --prefix)/share/zsh/site-functions" 
 
 
-zcomet snippet ${ZDOTDIR}/snippets/completion.zsh
 
 zcomet load romkatv/powerlevel10k		
 
@@ -67,13 +68,9 @@ zcomet snippet OMZ::plugins/copyfile/copyfile.plugin.zsh
 zcomet snippet OMZ::plugins/copypath/copypath.plugin.zsh
 
 zcomet load zsh-users/zsh-autosuggestions			
-bindkey -M viins '^e' autosuggest-accept	# [I] <Ctrl-E> : Accept and complete auto-suggestion
+bindkey -M viins '^e' autosuggest-accept
 
-zcomet load zsh-users/zsh-syntax-highlighting	
-zcomet load zsh-users/zsh-completions			
-zcomet load softmoth/zsh-vim-mode
 
-zcomet compinit 
 
 zcomet load junegunn/fzf shell completion.zsh key-bindings.zsh
 (( ${+commands[fzf]} )) || ~[fzf]/install --bin
@@ -84,7 +81,11 @@ if command -v aws_completer &> /dev/null; then
   complete -C aws_completer sam
 fi
 
+zcomet load zsh-users/zsh-syntax-highlighting	
+zcomet load zsh-users/zsh-completions			
+zcomet load softmoth/zsh-vim-mode
 
+zcomet compinit 
 
 autoload br
 [[ ! -f ${ZDOTDIR}/snippets/settings.zsh ]] || source ${ZDOTDIR}/snippets/settings.zsh

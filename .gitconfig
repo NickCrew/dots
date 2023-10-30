@@ -1,4 +1,15 @@
 # vim: ft=gitconfig
+#
+[core]
+	excludesfile = ~/.gitignore_global
+	ignorecase = false
+	autocrlf = false
+	editor = nvim
+	safecrlf = false
+	quotepath = false
+	preloadindex = true
+    pager = delta
+
 
 [user]
 	name = Nick Ferguson
@@ -18,15 +29,6 @@
 
 [color]
 	ui = auto
-
-[core]
-	excludesfile = ~/.gitignore_global
-	ignorecase = false
-	autocrlf = false
-	editor = nvim
-	safecrlf = false
-	quotepath = false
-	preloadindex = true
 
 [push]
 	# When pushing code, always push only your current branch to a branch of the same name
@@ -52,6 +54,7 @@
 
 [diff]
 	tool = Kaleidoscope
+    colorMoved = default
 
 [difftool]
 	prompt = false
@@ -62,6 +65,7 @@
 
 [merge]
 	tool = Kaleidoscope
+    conflictstyle = diff3
 
 [mergetool]
 	keepBackup = false
