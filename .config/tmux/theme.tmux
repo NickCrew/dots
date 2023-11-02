@@ -28,7 +28,7 @@ set -g status-bg $primary_bg_colour
 
 # Status Bar Section Length
 set -g status-left-length 39
-set -g status-right-length 45
+set -g status-right-length 70
 
 # Window Pane Border
 set -g pane-active-border-style fg=$primary_border_fg_colour

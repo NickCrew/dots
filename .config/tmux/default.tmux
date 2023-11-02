@@ -5,7 +5,6 @@ settings="$tmux_conf/settings.tmux"
 default_theme="$tmux_conf/theme.tmux"
 keybindings="$tmux_conf/keybindings.tmux"
 nested_active="$tmux_conf/nested-active.tmux"
-nested_inactive="$tmux_conf/nested-inactive.tmux"
 nested_keybindings="$tmux_conf/nested-keybindings.tmux"
 
 
