@@ -1,1 +1,3 @@
-nvim $HOME/.config/wezterm/wezterm.lua
+cd ~/.config/wezterm
+nvim wezterm.lua
+cd -

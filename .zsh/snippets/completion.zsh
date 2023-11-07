@@ -1,7 +1,6 @@
 
-zmodload zsh/complist  # Should be called before compinit
 
-unsetopt completealiases        # Don't expand aliases before completionfinishes
+setopt completealiases          # Make aliases work with completion nicely
 setopt glob_complete			# Show autocompletion menu with globs
 setopt menu_complete			# Automatically highlight first element of completion menu
 setopt auto_list				# Automatically list choices on ambiguous completion.
@@ -40,6 +39,7 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 zstyle ':completion:*' keep-prefix true
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
+# Keybindings
 bindkey -M menuselect 'h' vi-backward-char					# select left in completion menu					
 bindkey -M menuselect 'k' vi-up-line-or-history				# select above in completion menu
 bindkey -M menuselect 'j' vi-down-line-or-history   		# select below in completion menu
@@ -49,5 +49,14 @@ bindkey -M menuselect '^xi' vi-insert						# Insert
 bindkey -M menuselect '^xh' accept-and-hold                	# Hold
 bindkey -M menuselect '^xn' accept-and-infer-next-history  	# Next
 bindkey -M menuselect '^xu' undo                           	# Undo
+
+
+# Completion defintions
+if (( $+commands[kubectl])); then
+  alias k='kubectl'
+  compdef k=kubectl
+fi
+
+(( $+commands[yadm] )) && compdef yadm=git
 
 

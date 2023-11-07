@@ -29,6 +29,8 @@ fi
 source ${ZDOTDIR}/.zcomet/bin/zcomet.zsh
 
 
+# My completions
+zmodload zsh/complist  
 zcomet snippet ${ZDOTDIR}/snippets/completion.zsh
 
 # Autoload functions
@@ -38,7 +40,8 @@ autoload -Uz $fpath[1]/*(.:t)
 fpath+="$(brew --prefix)/share/zsh/site-functions" 
 
 
-
+# Prompt 
+[[ ! -f $HOME/.zsh/.p10k.zsh ]] || source $HOME/.zsh/.p10k.zsh
 zcomet load romkatv/powerlevel10k		
 
 zcomet load ohmyzsh plugins/dash
@@ -64,22 +67,9 @@ zcomet trigger tmux ohmyzsh plugins/tmux
 
 zcomet snippet OMZ::lib/directories.zsh
 zcomet snippet OMZ::plugins/1password/1password.plugin.zsh
-zcomet snippet OMZ::plugins/copyfile/copyfile.plugin.zsh
-zcomet snippet OMZ::plugins/copypath/copypath.plugin.zsh
 
 zcomet load zsh-users/zsh-autosuggestions			
 bindkey -M viins '^e' autosuggest-accept
-
-
-
-zcomet load junegunn/fzf shell completion.zsh key-bindings.zsh
-(( ${+commands[fzf]} )) || ~[fzf]/install --bin
-
-if command -v aws_completer &> /dev/null; then
-  autoload -Uz bashcompinit && bashcompinit
-  complete -C aws_completer aws
-  complete -C aws_completer sam
-fi
 
 zcomet load zsh-users/zsh-syntax-highlighting	
 zcomet load zsh-users/zsh-completions			
@@ -87,10 +77,16 @@ zcomet load softmoth/zsh-vim-mode
 
 zcomet compinit 
 
-autoload br
-[[ ! -f ${ZDOTDIR}/snippets/settings.zsh ]] || source ${ZDOTDIR}/snippets/settings.zsh
-[[ ! -f ${ZDOTDIR}/snippets/hist.zsh ]] || source ${ZDOTDIR}/snippets/hist.zsh
-[[ ! -f $HOME/.config/op/plugins.sh ]] || source $HOME/.config/op/plugins.sh
-[[ ! -f $HOME/.zsh/.p10k.zsh ]] || source $HOME/.zsh/.p10k.zsh
-[[ ! -f $ZDOTDIR/.zlocal ]] || source ${ZDOTDIR}/.zlocal
+zcomet load junegunn/fzf shell completion.zsh key-bindings.zsh
+zcomet load ohmyzsh plugins/aws
 
+
+# Misc settings
+[[ ! -f ${ZDOTDIR}/snippets/settings.zsh ]] || source ${ZDOTDIR}/snippets/settings.zsh
+# History configuration
+[[ ! -f ${ZDOTDIR}/snippets/hist.zsh ]] || source ${ZDOTDIR}/snippets/hist.zsh
+# 1Password plugins (aws, gh, etc)
+[[ ! -f $HOME/.config/op/plugins.sh ]] || source $HOME/.config/op/plugins.sh
+# Local settings
+[[ ! -f $ZDOTDIR/.zlocal ]] || source ${ZDOTDIR}/.zlocal
+autoload br

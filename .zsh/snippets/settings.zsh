@@ -25,11 +25,3 @@ alias ll='ls -lah'
 alias l='ls -lh'
 alias wstt='wezterm cli set-tab-title'
 
-if (( $+commands[kubectl])); then
-  alias k='kubectl'
-  compdef k=kubectl
-fi
-
-(( $+commands[yadm] )) && compdef yadm=git
-
-

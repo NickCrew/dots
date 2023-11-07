@@ -27,5 +27,7 @@ set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-sessionist'
 set -g @plugin 'tmux-plugins/tmux-yank'
 set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
+# set -g @plugin 'tmux-plugins/vim-tmux-navigator'
+# set -g @plugin 'RyanMillerC/better-vim-tmux-resizer'
 #  Install Tmux Plugin Manager: git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins
 run -b '~/.tmux/plugins/tpm/tpm'
