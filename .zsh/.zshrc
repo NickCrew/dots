@@ -90,3 +90,6 @@ zcomet load ohmyzsh plugins/aws
 # Local settings
 [[ ! -f $ZDOTDIR/.zlocal ]] || source ${ZDOTDIR}/.zlocal
 autoload br
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
