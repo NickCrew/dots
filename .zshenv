@@ -43,3 +43,4 @@ if [[ $(uname) == 'Darwin' ]]; then
 fi
 
 typeset -U PATH
+. "$HOME/.cargo/env"

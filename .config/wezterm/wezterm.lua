@@ -15,9 +15,14 @@ local settings = {
 --
 -- Theme based on system appearance
 --
+local dark_theme = 'Tokyo Night Storm (Gogh)'
+local light_theme = 'Tokyo Night Day'
+-- local dark_theme = 'rose-pine'
+-- local light_theme = 'rose-pine-dawn'
+
 local is_dark = wezterm.gui.get_appearance():find("Dark")
 local function _get_theme_for_appearance()
-  return is_dark and 'Tokyo Night Storm (Gogh)' or 'Tokyo Night Day'
+  return is_dark and dark_theme or light_theme
 end
 
 --
@@ -82,9 +87,9 @@ return {
     { key = 'PageDown', mods = '',           action = wezterm.action.ScrollByPage(1) },
     { key = 'PageUp',   mods = '',           action = wezterm.action.ScrollByPage(-1) },
     { key = "h",        mods = "CTRL|SHIFT", action = wezterm.action.AdjustPaneSize({ "Left", 4 }) },
-    { key = "j",        mods = "CTRL|SHIFT", action = wezterm.action.AdjustPaneSize({ "Down", 3 }) },
-    { key = "k",        mods = "CTRL|SHIFT", action = wezterm.action.AdjustPaneSize({ "Up", 3 }) },
-    { key = "l",        mods = "CTRL|SHIFT", action = wezterm.action.AdjustPaneSize({ "Right", 3 }) },
+    { key = "j",        mods = "CTRL|SHIFT", action = wezterm.action.AdjustPaneSize({ "Down", 4 }) },
+    { key = "k",        mods = "CTRL|SHIFT", action = wezterm.action.AdjustPaneSize({ "Up", 4 }) },
+    { key = "l",        mods = "CTRL|SHIFT", action = wezterm.action.AdjustPaneSize({ "Right", 4 }) },
     -- { key = 'h',        mods = 'CTRL',       action = wezterm.action.ActivatePaneDirection 'Left', },
     -- { key = 'l',        mods = 'CTRL',       action = wezterm.action.ActivatePaneDirection 'Right', },
     -- { key = 'k',        mods = 'CTRL',       action = wezterm.action.ActivatePaneDirection 'Up', },
