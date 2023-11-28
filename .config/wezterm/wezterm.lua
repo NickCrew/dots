@@ -86,10 +86,11 @@ return {
     { key = "v",        mods = "CTRL|SHIFT", action = wezterm.action.PasteFrom("Clipboard") },
     { key = 'PageDown', mods = '',           action = wezterm.action.ScrollByPage(1) },
     { key = 'PageUp',   mods = '',           action = wezterm.action.ScrollByPage(-1) },
-    { key = "h",        mods = "CTRL|SHIFT", action = wezterm.action.AdjustPaneSize({ "Left", 4 }) },
-    { key = "j",        mods = "CTRL|SHIFT", action = wezterm.action.AdjustPaneSize({ "Down", 4 }) },
-    { key = "k",        mods = "CTRL|SHIFT", action = wezterm.action.AdjustPaneSize({ "Up", 4 }) },
-    { key = "l",        mods = "CTRL|SHIFT", action = wezterm.action.AdjustPaneSize({ "Right", 4 }) },
+    { key = "h",        mods = "CTRL|SHIFT", action = wezterm.action.AdjustPaneSize({ "Left", 5 }) },
+    { key = "k",        mods = "CTRL|SHIFT", action = wezterm.action.AdjustPaneSize({ "Up", 5 }) },
+    { key = "l",        mods = "CTRL|SHIFT", action = wezterm.action.AdjustPaneSize({ "Right", 5 }) },
+    { key = "j",        mods = "CTRL|SHIFT", action = wezterm.action.AdjustPaneSize({ "Down", 5 }) },
+
     -- { key = 'h',        mods = 'CTRL',       action = wezterm.action.ActivatePaneDirection 'Left', },
     -- { key = 'l',        mods = 'CTRL',       action = wezterm.action.ActivatePaneDirection 'Right', },
     -- { key = 'k',        mods = 'CTRL',       action = wezterm.action.ActivatePaneDirection 'Up', },
@@ -101,13 +102,13 @@ return {
     { key = 'j',        mods = 'SUPER|SHIFT',       action = wezterm.action.ActivatePaneDirection 'Down', },
     {
       key = "|",
-      mods = "LEADER|SHIFT",
+      mods = "CTRL|SHIFT",
       action = wezterm.action({
         SplitHorizontal = { domain = "CurrentPaneDomain" } })
     },
     {
       key = "-",
-      mods = "LEADER|SHIFT",
+      mods = "CTRL",
       action = wezterm.action({
         SplitVertical = { domain = "CurrentPaneDomain" } })
     },
@@ -142,3 +143,4 @@ return {
   window_decorations             = "RESIZE",
   window_padding                 = { left = 10, right = 10, top = 10, bottom = 10 },
 }
+
