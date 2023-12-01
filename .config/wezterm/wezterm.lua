@@ -1,12 +1,13 @@
 --
 --
 local wezterm = require("wezterm")
+local wtact = wezterm.action
 
 -- So I don't have to scroll so far
 local settings = {
   font = {
     name = "OperatorMono Nerd Font",
-    size = 17,
+    size = 16.5,
     weight = "Medium"
   },
   leader = { key = "a", mods = "SUPER", timeout_millseconds = 1000 }
@@ -76,55 +77,39 @@ return {
   initial_cols                   = 200,
   initial_rows                   = 35,
   keys                           = {
-    { key = "q",        mods = "LEADER",     action = wezterm.action.CloseCurrentPane({ confirm = false }) },
-    { key = "z",        mods = "ALT",        action = wezterm.action.TogglePaneZoomState },
-    { key = "F11",      mods = "",           action = wezterm.action.ToggleFullScreen },
-    { key = "c",        mods = "LEADER",     action = wezterm.action.ActivateCopyMode },
-    { key = "=",        mods = "CTRL|SHIFT", action = wezterm.action.IncreaseFontSize },
-    { key = "-",        mods = "CTRL|SHIFT", action = wezterm.action.DecreaseFontSize },
-    { key = "c",        mods = "CTRL|SHIFT", action = wezterm.action.CopyTo("Clipboard") },
-    { key = "v",        mods = "CTRL|SHIFT", action = wezterm.action.PasteFrom("Clipboard") },
-    { key = 'PageDown', mods = '',           action = wezterm.action.ScrollByPage(1) },
-    { key = 'PageUp',   mods = '',           action = wezterm.action.ScrollByPage(-1) },
-    { key = "h",        mods = "CTRL|SHIFT", action = wezterm.action.AdjustPaneSize({ "Left", 5 }) },
-    { key = "k",        mods = "CTRL|SHIFT", action = wezterm.action.AdjustPaneSize({ "Up", 5 }) },
-    { key = "l",        mods = "CTRL|SHIFT", action = wezterm.action.AdjustPaneSize({ "Right", 5 }) },
-    { key = "j",        mods = "CTRL|SHIFT", action = wezterm.action.AdjustPaneSize({ "Down", 5 }) },
-
-    -- { key = 'h',        mods = 'CTRL',       action = wezterm.action.ActivatePaneDirection 'Left', },
-    -- { key = 'l',        mods = 'CTRL',       action = wezterm.action.ActivatePaneDirection 'Right', },
-    -- { key = 'k',        mods = 'CTRL',       action = wezterm.action.ActivatePaneDirection 'Up', },
-    -- { key = 'j',        mods = 'CTRL',       action = wezterm.action.ActivatePaneDirection 'Down', },
-
-    { key = 'h',        mods = 'SUPER|SHIFT',       action = wezterm.action.ActivatePaneDirection 'Left', },
-    { key = 'l',        mods = 'SUPER|SHIFT',       action = wezterm.action.ActivatePaneDirection 'Right', },
-    { key = 'k',        mods = 'SUPER|SHIFT',       action = wezterm.action.ActivatePaneDirection 'Up', },
-    { key = 'j',        mods = 'SUPER|SHIFT',       action = wezterm.action.ActivatePaneDirection 'Down', },
-    {
-      key = "|",
-      mods = "CTRL|SHIFT",
-      action = wezterm.action({
-        SplitHorizontal = { domain = "CurrentPaneDomain" } })
-    },
-    {
-      key = "-",
-      mods = "CTRL",
-      action = wezterm.action({
-        SplitVertical = { domain = "CurrentPaneDomain" } })
-    },
-    { key = "1", mods = "SUPER", action = wezterm.action({ ActivateTab = 0 }) },
-    { key = "2", mods = "SUPER", action = wezterm.action({ ActivateTab = 1 }) },
-    { key = "3", mods = "SUPER", action = wezterm.action({ ActivateTab = 2 }) },
-    { key = "4", mods = "SUPER", action = wezterm.action({ ActivateTab = 3 }) },
-    { key = "5", mods = "SUPER", action = wezterm.action({ ActivateTab = 4 }) },
-    { key = "6", mods = "SUPER", action = wezterm.action({ ActivateTab = 5 }) },
-    { key = "7", mods = "SUPER", action = wezterm.action({ ActivateTab = 6 }) },
-    { key = "8", mods = "SUPER", action = wezterm.action({ ActivateTab = 7 }) },
-    { key = "9", mods = "SUPER", action = wezterm.action({ ActivateTab = 8 }) },
-    { key = "l", mods = "SUPER", action = wezterm.action.ShowLauncher },
-    { key = '9', mods = 'ALT',   action = wezterm.action.ShowLauncherArgs { flags = 'FUZZY|WORKSPACES' }, },
-    { key = 'n', mods = 'ALT',   action = wezterm.action.SwitchWorkspaceRelative(1) },
-    { key = 'p', mods = 'ALT',   action = wezterm.action.SwitchWorkspaceRelative(-1) }
+    { key = "q",        mods = "LEADER",      action = wtact.CloseCurrentPane({ confirm = false }) },
+    { key = "z",        mods = "ALT",         action = wtact.TogglePaneZoomState },
+    { key = "F11",      mods = "",            action = wtact.ToggleFullScreen },
+    { key = "c",        mods = "LEADER",      action = wtact.ActivateCopyMode },
+    { key = "=",        mods = "CTRL|SHIFT",  action = wtact.IncreaseFontSize },
+    { key = "-",        mods = "CTRL|SHIFT",  action = wtact.DecreaseFontSize },
+    { key = "c",        mods = "CTRL|SHIFT",  action = wtact.CopyTo("Clipboard") },
+    { key = "v",        mods = "CTRL|SHIFT",  action = wtact.PasteFrom("Clipboard") },
+    { key = 'PageDown', mods = '',            action = wtact.ScrollByPage(1) },
+    { key = 'PageUp',   mods = '',            action = wtact.ScrollByPage(-1) },
+    { key = "h",        mods = "CTRL|SHIFT",  action = wtact.AdjustPaneSize({ "Left", 5 }) },
+    { key = "k",        mods = "CTRL|SHIFT",  action = wtact.AdjustPaneSize({ "Up", 5 }) },
+    { key = "l",        mods = "CTRL|SHIFT",  action = wtact.AdjustPaneSize({ "Right", 5 }) },
+    { key = "j",        mods = "CTRL|SHIFT",  action = wtact.AdjustPaneSize({ "Down", 5 }) },
+    { key = 'h',        mods = 'SUPER|SHIFT', action = wtact.ActivatePaneDirection 'Left', },
+    { key = 'l',        mods = 'SUPER|SHIFT', action = wtact.ActivatePaneDirection 'Right', },
+    { key = 'k',        mods = 'SUPER|SHIFT', action = wtact.ActivatePaneDirection 'Up', },
+    { key = 'j',        mods = 'SUPER|SHIFT', action = wtact.ActivatePaneDirection 'Down', },
+    { key = "|",        mods = "CTRL|SHIFT",  action = wtact({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
+    { key = "-",        mods = "CTRL",        action = wtact({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
+    { key = "1", mods = "SUPER", action = wtact({ ActivateTab = 0 }) },
+    { key = "2", mods = "SUPER", action = wtact({ ActivateTab = 1 }) },
+    { key = "3", mods = "SUPER", action = wtact({ ActivateTab = 2 }) },
+    { key = "4", mods = "SUPER", action = wtact({ ActivateTab = 3 }) },
+    { key = "5", mods = "SUPER", action = wtact({ ActivateTab = 4 }) },
+    { key = "6", mods = "SUPER", action = wtact({ ActivateTab = 5 }) },
+    { key = "7", mods = "SUPER", action = wtact({ ActivateTab = 6 }) },
+    { key = "8", mods = "SUPER", action = wtact({ ActivateTab = 7 }) },
+    { key = "9", mods = "SUPER", action = wtact({ ActivateTab = 8 }) },
+    { key = "l", mods = "SUPER", action = wtact.ShowLauncher },
+    { key = '9', mods = 'ALT',   action = wtact.ShowLauncherArgs { flags = 'FUZZY|WORKSPACES' }, },
+    { key = 'n', mods = 'ALT',   action = wtact.SwitchWorkspaceRelative(1) },
+    { key = 'p', mods = 'ALT',   action = wtact.SwitchWorkspaceRelative(-1) }
   },
   leader                         = settings.leader,
   line_height                    = 1.20,
@@ -143,4 +128,3 @@ return {
   window_decorations             = "RESIZE",
   window_padding                 = { left = 10, right = 10, top = 10, bottom = 10 },
 }
-
