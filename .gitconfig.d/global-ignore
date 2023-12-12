@@ -1,0 +1,7 @@
+# vim: ft=gitconfig
+
+# macOS
+.DS_Store
+
+# Direnv
+.envrc

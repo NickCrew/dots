@@ -1,0 +1,26 @@
+# vim: ft=gitconfig
+[diff]
+    colorMoved = default
+	tool = Kaleidoscope
+
+[difftool]
+	prompt = false
+	trustExitCode = true
+
+[merge]
+    conflictstyle = diff3
+    autostash = true
+    ff = false
+	tool = Kaleidoscope
+
+[mergetool]
+	keepBackup = false
+	prompt = false
+
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true

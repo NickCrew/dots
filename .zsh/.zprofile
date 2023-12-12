@@ -10,7 +10,8 @@
 #     zprofile* →  zshrc → zlogin
 #
 # ------------------------------------------------------------------------------
-ARAXIS_ROOT=/Applications/Araxis\ Merge.app
 export PYENV_ROOT="${PYENV_ROOT:-$HOME/.pyenv}"
-export PATH="${ARAXIS_ROOT}/Contents/Utilities:${PYENV_ROOT}/bin:${PATH}"
+path=("${PYENV_ROOT}/bin" $path)
+export PATH
+
 eval "$(pyenv init --path)"

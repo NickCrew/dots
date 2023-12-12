@@ -26,11 +26,8 @@ path=("$HOME/Applications" $path)
 export PATH
 
 
-[[ ! -f $HOME/.orbstack/shell/init.zsh ]] || source $HOME/.orbstack/shell/init.zsh
-[[ ! -f $HOME/.cargo/env ]] || source $HOME/.cargo/env
 
 if [[ $(uname) == 'Darwin' ]]; then
-  alias nvim='~/opt/nvim-macos/bin/nvim'
   export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
   export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
   export CLOUDSDK_HOME=$HOME/opt/google-cloud-sdk
@@ -43,4 +40,5 @@ if [[ $(uname) == 'Darwin' ]]; then
 fi
 
 typeset -U PATH
-. "$HOME/.cargo/env"
+
+[[ ! -f $HOME/.cargo/env ]] || source $HOME/.cargo/env
