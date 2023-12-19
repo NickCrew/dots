@@ -34,21 +34,26 @@ source ${ZDOTDIR}/.zcomet/bin/zcomet.zsh
 
 
 #==============================================================================
-# Envionrment
+# Environment
 #-------------------------------------------------------------------------------
-# CD Path
-export CDPATH="${HOME}/.config:${HOME}/.local/share:${HOME}/Work:${HOME}/Code:${HOME}/Work/Projects"
-# Function Path
-fpath+="${ZDOTDIR}/functions"
-if command -v brew &> /dev/null; then
-    fpath+="$(brew --prefix)/share/zsh/site-functions"
-fi
-# Envvars
+
+# Exports
 GPG_TTY=$(tty)
 export GPG_TTY
 export PAGER=less
 export EDITOR=nvim
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+export ZSH_HASH_DIR="${ZSH_HASH_DIR:-$HOME/.zsh/hashes}"
+export CDPATH="${HOME}/.config:${HOME}/.local/share:${HOME}/Work:${HOME}/Code:${HOME}/Work/Projects"
+
+# Function Path
+fpath+="${ZDOTDIR}/functions"             # My functions
+fpath+="${ZSH_CACHE_DIR}/completions"     # Completions
+if command -v brew &> /dev/null; then
+    fpath+="$(brew --prefix)/share/zsh/site-functions"
+fi
+autoload $(ls ${ZDOTDIR}/functions)
+
 # History 
 HISTFILE="$HOME/.zsh_history"
 HISTORY_BASE=$HOME/.directory_history
@@ -62,6 +67,7 @@ HISTORY_IGNORE="pwd:ls:ll:la:.."
 # Options
 #-------------------------------------------------------------------------------
 
+# Completion Options
 setopt completealiases          # Make aliases work with completion nicely
 setopt glob_complete			# Show autocompletion menu with globs
 setopt menu_complete			# Automatically highlight first element of completion menu
@@ -69,7 +75,7 @@ setopt auto_list				# Automatically list choices on ambiguous completion.
 setopt complete_in_word			# Complete from both ends of a word.
 setopt no_list_beep				# Don't beep when listing choices on ambiguous completion
 setopt nocaseglob               # Case-insensitive globbing
-setopt auto_cd                  # Don't type cd
+# History Options
 setopt bang_hist				# Perform textual history expansion, csh-style, treating the character ‘!’ specially.
 setopt hist_no_functions		# Don't store function definitions
 setopt hist_no_store			# Don't store history (fc -l) command
@@ -80,14 +86,17 @@ setopt hist_ignore_dups       	# Ignore duplicated commands history lissetopt hi
 setopt hist_reduce_blanks		# Remove superfluous blanks from each command line being added to the history list
 setopt inc_append_History		# Add new lines to the history file immediately (do not wait until exit)
 unsetopt hist_beep				# Shut up shut up shut up
-unsetopt beep			        # shut up shut up shut up
-unsetopt clobber		        # Disallow overwriting existing files
-setopt local_traps		        # Allow functions to have local traps
-setopt local_options	        # Allow fucntions to have local options
-setopt ignore_eof		        # Don't exit on EOF
+# Jobs
 setopt no_bg_nice		        # Don't run bg jobs at a lower priority
 setopt no_hup			        # Don't kill jobs when the shell exits
 setopt notify			        # notify when background job finishes				
+# Misc Options
+setopt auto_cd                  # Don't type cd
+unsetopt beep			        # shut up shut up shut up
+unsetopt clobber		        # Disallow overwriting existing files
+setopt ignore_eof		        # Don't exit on EOF
+setopt local_traps		        # Allow functions to have local traps
+setopt local_options	        # Allow fucntions to have local options
 
 
 #===============================================================================
@@ -95,6 +104,7 @@ setopt notify			        # notify when background job finishes
 #-------------------------------------------------------------------------------
 zmodload zsh/complist  
 zle -C _expand_alias complete-word _generic
+
 # Use cache for commands using cache
 zstyle ':completion:*' completer _extensions _complete _approximate
 # Use cache for commands using cache
@@ -147,9 +157,8 @@ bindkey -M menuselect '^xu' undo                           	# Undo
 
 # Prompt
 P10K_CONFIG="${ZDOTDIR:-$HOME/.zsh}/.p10k.zsh"
-if [[ -f $P10K_CONFIG ]]; then
-  source $P10K_CONFIG
-fi
+test -e "$P10K_CONFIG" && source "$P10K_CONFIG"
+
 zcomet load romkatv/powerlevel10k		
 zcomet load jonmosco/kube-ps1
 
@@ -201,22 +210,22 @@ zcomet load ohmyzsh plugins/aws
 alias la='ls -ah'
 alias ll='ls -lah'
 alias l='ls -lh'
-alias ls='eza'
 alias po='poetry'
 alias lg='lazygit'
 alias wstt='wezterm cli set-tab-title'
 alias v='nvim'
+alias mp='multipass'
+alias k='kubectl'
+alias ls='eza'
+alias t='terragrunt'
 
-if (( $+commands[kubectl]));    then alias k='kubectl'; compdef k=kubectl; fi;
-if (( $+commands[yadm] ));      then compdef yadm=git; fi;
-if (( $+commands[multipass] )); then alias mp='compdef'; compdef mp=multipass; fi;
-if (( $+commands[eza] ));       then alias ls='eza'; compdef ls=eza; fi;
+command -v multipass >/dev/null && compdef mp=multipass
+command -v kubectl >/dev/null && compdef k=kubectl 
 
 
 #===============================================================================
 # Functions
 #-------------------------------------------------------------------------------
-export ZSH_HASH_DIR="${ZSH_HASH_DIR:-$HOME/.zsh/hashes}"
 hashdir() {
     [ -z "$1" ] && echo "Pass hash to use for dir" && return 1
     hash -d "$1"="$(pwd)"
@@ -244,9 +253,6 @@ tmp () {
     r="/tmp/workspaces/$(xxd -l3 -ps /dev/urandom)"
     mkdir -p -p "$r" && pushd "$r"
 }
-
-# Autoload Functions
-autoload br edit-zshrc edit-p10krc edit-weztermrc edit-nviminit portproc 
 
 # Hash Directories
 hash -d proj="$HOME/Work/Projects"
