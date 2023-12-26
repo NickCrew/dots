@@ -102,6 +102,9 @@ setopt local_options	        # Allow fucntions to have local options
 #===============================================================================
 # Completion 
 #-------------------------------------------------------------------------------
+#
+zcomet load marlonrichert/zsh-autocomplete      # autocomplete
+
 zmodload zsh/complist  
 zle -C _expand_alias complete-word _generic
 
@@ -135,7 +138,14 @@ zstyle ':completion:*:*:-command-:*:*' group-order aliases builtins functions co
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' keep-prefix true
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
-
+# Allow completion
+#zstyle '*:compinit' arguments -D -i -u -C -w
+# all Tab widgets
+zstyle ':autocomplete:*complete*:*' insert-unambiguous yes
+# all history widgets
+zstyle ':autocomplete:*history*:*' insert-unambiguous yes
+# ^S
+zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
 
 #===============================================================================
 # Keybindings
@@ -150,7 +160,6 @@ bindkey -M menuselect '^xh' accept-and-hold                	# Hold
 bindkey -M menuselect '^xn' accept-and-infer-next-history  	# Next
 bindkey -M menuselect '^xu' undo                           	# Undo
 
-
 #===============================================================================
 # Plugins 
 #-------------------------------------------------------------------------------
@@ -160,6 +169,7 @@ P10K_CONFIG="${ZDOTDIR:-$HOME/.zsh}/.p10k.zsh"
 test -e "$P10K_CONFIG" && source "$P10K_CONFIG"
 
 zcomet load romkatv/powerlevel10k		
+
 zcomet load jonmosco/kube-ps1
 
 # Development
@@ -177,9 +187,6 @@ zcomet load ohmyzsh plugins/ssh-agent
 # Kubernetes
 zcomet load ohmyzsh plugins/kubectl
 
-# Virtualization
-zcomet load ohmyzsh plugins/multipass
-
 # Navigation
 zcomet load ohmyzsh plugins/direnv               # Run shell commands when entering a directory
 zcomet load ohmyzsh plugins/zoxide               # A smarter cd command
@@ -187,7 +194,6 @@ zcomet snippet OMZ::lib/directories.zsh          # OMZ Directory Lib
 
 # 1password CLI and Plugins
 zcomet snippet OMZ::plugins/1password/1password.plugin.zsh
-#zcomet snippet ${XDG_CONFIG_HOME:-$HOME/.config}/op/plugins.sh
 
 zcomet load zsh-users/zsh-autosuggestions        # Autosuggestions
 bindkey -M viins '^e' autosuggest-accept         # <CTRL+E> Accept Suggestion
@@ -196,7 +202,6 @@ zcomet load zsh-users/zsh-syntax-highlighting	 # zsh-syntax-highlighting
 zcomet load zsh-users/zsh-completions		     # Completions	
 zcomet load softmoth/zsh-vim-mode                # Vim Mode
 
-zcomet compinit 
 
 zcomet load junegunn/fzf shell completion.zsh key-bindings.zsh
 export FZF_COMPLETION_TRIGGER=';;'
@@ -215,11 +220,11 @@ alias lg='lazygit'
 alias wstt='wezterm cli set-tab-title'
 alias v='nvim'
 alias mp='multipass'
-alias k='kubectl'
 alias ls='eza'
 alias t='terragrunt'
+alias rr='ranger'
 
-command -v multipass >/dev/null && compdef mp=multipass
+alias k='kubectl'
 command -v kubectl >/dev/null && compdef k=kubectl 
 
 
@@ -238,7 +243,7 @@ take () {
 }
 
 # Navigate to project root
-r () {
+top () {
     cd "$(git rev-parse --show-toplevel 2>/dev/null)"
 }
 
