@@ -147,18 +147,6 @@ zstyle ':autocomplete:*history*:*' insert-unambiguous yes
 # ^S
 zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
 
-#===============================================================================
-# Keybindings
-#-------------------------------------------------------------------------------
-bindkey -M menuselect 'h' vi-backward-char					# select left in completion menu					
-bindkey -M menuselect 'k' vi-up-line-or-history				# select above in completion menu
-bindkey -M menuselect 'j' vi-down-line-or-history   		# select below in completion menu
-bindkey -M menuselect 'l' vi-forward-char					# select right in completion menu
-bindkey -M menuselect '^xg' clear-screen					# Clears the screen?
-bindkey -M menuselect '^xi' vi-insert						# Insert
-bindkey -M menuselect '^xh' accept-and-hold                	# Hold
-bindkey -M menuselect '^xn' accept-and-infer-next-history  	# Next
-bindkey -M menuselect '^xu' undo                           	# Undo
 
 #===============================================================================
 # Plugins 
@@ -208,6 +196,22 @@ export FZF_COMPLETION_TRIGGER=';;'
 
 zcomet load ohmyzsh plugins/aws
 
+
+#===============================================================================
+# Keybindings
+#-------------------------------------------------------------------------------
+bindkey -M menuselect 'h' vi-backward-char					# select left in completion menu					
+bindkey -M menuselect 'k' vi-up-line-or-history				# select above in completion menu
+bindkey -M menuselect 'j' vi-down-line-or-history   		# select below in completion menu
+bindkey -M menuselect 'l' vi-forward-char					# select right in completion menu
+bindkey -M menuselect '^xg' clear-screen					# Clears the screen?
+bindkey -M menuselect '^xi' vi-insert						# Insert
+bindkey -M menuselect '^xh' accept-and-hold                	# Hold
+bindkey -M menuselect '^xn' accept-and-infer-next-history  	# Next
+bindkey -M menuselect '^xu' undo                           	# Undo
+
+bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
+bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 
 #==============================================================================
 # Aliases
