@@ -1,0 +1,3 @@
+cd ${ZDOTDIR:-$HOME}
+nvim .p10k.zsh
+cd -
