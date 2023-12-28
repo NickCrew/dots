@@ -1,0 +1,52 @@
+	cred*
+	.netrc
+	.gitlocal
+	.gitlocal-*
+	*cred*
+	op-session.sh
+	bin/tx-*
+	.fasd
+	.cfg.git/
+	.ssh/config.d
+	.ssh/id_rsa
+	.ssh/id_rsa.pub
+	.ldapvirc
+	.op/config
+	.zcompdump
+	.zcompdump*
+	**/.zcompdump*
+	.viminfo
+	*.zni
+	.vim/plugged/
+	.vim/autoload/plug.vim
+	.tmux/**
+	**/*.tmux-resurrect*
+	**/*.log
+	.vim/.netrhist
+	.vim/.netrwhist
+	.dots.git/
+	.cfg/
+	.cfg-env
+	.histfile
+	.lesshst
+	.config/broot/**
+	.config/karabiner/**
+
+	.zcompdump*
+	.zcomet/
+	.zsh_sessions/
+	.zsh_history
+	*.zwc
+	local.zsh
+	local.*.zsh
+
+	# Whitelist
+	!.config/broot/conf.hjson
+	!.config/karabiner/karabiner.json
+
+
+.config/kitty/theme.conf
+.ssh/config.d/tx/
+.gitconfig.d/local.conf
+.zshrc.bak.*
+*config.local

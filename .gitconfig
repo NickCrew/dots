@@ -13,7 +13,7 @@
 
 [user]
 	name = Nick Ferguson
-	email = ncf@nickferguson.dev
+	email = nick.ferguson@threatx.com
 
 [github]
 	user = NickCrew
@@ -127,10 +127,12 @@
 	wipe = !git add -A && git commit -qm  WIPE SAVEPOINT  && git reset HEAD~1 --hard
 
 	# Compact and readable log
-	l = log --graph --pretty=format:'%C(magenta)%h%C(blue)%d%Creset %s %C(blue bold)- %an, %ar%Creset'
 
 	# Log with list of changed files for each commit
 	ll = log --stat --abbrev-commit
+    lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
+    lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+    lg = lg1
 
 	# List of my own commits
 	my = log --branches=* --no-merges  --date=short --author='Nick Ferguson' --pretty=format:'%C(magenta)%h%C(blue)%d%Creset %s %C(blue bold)- %an, %ar%Creset'

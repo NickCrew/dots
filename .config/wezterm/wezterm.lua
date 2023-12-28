@@ -16,10 +16,10 @@ local settings = {
 --
 -- Theme based on system appearance
 --
-local dark_theme = 'Tokyo Night Storm (Gogh)'
-local light_theme = 'Tokyo Night Day'
--- local dark_theme = 'rose-pine'
--- local light_theme = 'rose-pine-dawn'
+-- local dark_theme = 'Tokyo Night Storm (Gogh)'
+-- local light_theme = 'Tokyo Night Day'
+local dark_theme = 'rose-pine'
+local light_theme = 'rose-pine-dawn'
 
 local is_dark = wezterm.gui.get_appearance():find("Dark")
 local function _get_theme_for_appearance()

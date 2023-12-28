@@ -28,7 +28,7 @@ GPG_TTY=$(tty)
 export GPG_TTY
 export EDITOR='nvim'
 export VISUAL='nvim'
-export PAGER=most
+export PAGER=less
 
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
