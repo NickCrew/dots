@@ -108,8 +108,8 @@ return {
     { key = "9",        mods = "SUPER",       action = wtact({ ActivateTab = 8 }) },
     { key = "l",        mods = "SUPER",       action = wtact.ShowLauncher },
     { key = '9',        mods = 'ALT',         action = wtact.ShowLauncherArgs { flags = 'FUZZY|WORKSPACES' }, },
-    { key = 'n',        mods = 'ALT',         action = wtact.SwitchWorkspaceRelative(1) },
-    { key = 'p',        mods = 'ALT',         action = wtact.SwitchWorkspaceRelative(-1) }
+    { key = ']',        mods = 'SUPER|SHIFT', action = wtact.SwitchWorkspaceRelative(1) },
+    { key = '[',        mods = 'SUPER|SHIFT', action = wtact.SwitchWorkspaceRelative(-1) }
   },
   leader                         = settings.leader,
   line_height                    = 1.20,

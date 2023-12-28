@@ -1,0 +1,15 @@
+.DS_Store
+.zcompdump*
+.local.zsh
+*.local.zsh
+.zcomet/
+.zsh_sessions/
+.zsh_history
+*.bak.*
+*.zwc
+local.*
+plugins/local.zsh
+**/local.zsh
+.zlocal.zsh
+.zsh_history
+.zcompdump*

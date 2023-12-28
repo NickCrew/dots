@@ -18,6 +18,8 @@ fi
 source ${ZDOTDIR}/.zcomet/bin/zcomet.zsh
 
 ##: Function Path
+zcomet snippet "${ZDOTDIR}/lib/func.zsh"
+
 fpath+="${ZDOTDIR}/functions"             # My functions
 fpath+="${ZSH_CACHE_DIR}/completions"     # Completions
 if command -v brew &> /dev/null; then
@@ -26,34 +28,47 @@ fi
 autoload $(ls ${ZDOTDIR}/functions)
 
 
-# Exports
-export PAGER=most
-export EDITOR=nvim
-export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
-
- # Opts
+## Options
 setopt no_bg_nice		        # Don't run bg jobs at a lower priority
 setopt no_hup			        # Don't kill jobs when the shell exits
 setopt notify			        # notify when background job finishes				
 unsetopt beep			        # shut up shut up shut up
 unsetopt clobber		        # Disallow overwriting existing files
 
+##: HIstory Opts
+setopt bang_hist				# Perform textual history expansion, csh-style, treating the character ‘!’ specially.
+setopt hist_no_functions		# Don't store function definitions
+setopt hist_no_store			# Don't store history (fc -l) command
+setopt extended_history			# Record timestamp of command in HISTFILE
+setopt share_history          	# Share command history data
+setopt hist_expire_dups_first 	# Delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_ignore_dups       	# Ignore duplicated commands history lissetopt hist_verify            	# Show command with history expansion to user before running it
+setopt hist_reduce_blanks		# Remove superfluous blanks from each command line being added to the history list
+setopt inc_append_History		# Add new lines to the history file immediately (do not wait until exit)
+unsetopt hist_beep				# Shut up shut up shut up
 
-##: Our library
-zcomet snippet "${ZDOTDIR}/lib/aliases.zsh"
-zcomet snippet "${ZDOTDIR}/lib/hist.zsh"
-zcomet snippet "${ZDOTDIR}/lib/func.zsh"
+# Aliases
+alias la='ls -ah'
+alias ll='ls -lah'
+alias l='ls -lh'
+alias po='poetry'
+alias lg='lazygit'
+alias wstt='wezterm cli set-tab-title'
+alias v='nvim'
+alias mp='multipass'
+alias ls='eza'
+alias t='terragrunt'
+alias rr='ranger'
+alias wt='wezterm'
+alias k='kubectl'
+
 
 ##: Directoreis
 zcomet load ohmyzsh plugins/direnv               # Run shell commands when entering a directory
 zcomet load ohmyzsh plugins/zoxide               # A smarter cd command
 zcomet snippet OMZ::lib/directories.zsh
 
-export CDPATH="${HOME}/.config:${HOME}/.local/share:${HOME}/Work:${HOME}/Code:${HOME}/Work/Projects"
-export ZSH_HASH_DIR="${ZSH_HASH_DIR:-$HOME/.zsh/hashes}"
-
 ##: Prompt 
-P10K_CONFIG="${ZDOTDIR:-$HOME/.zsh}/.p10k.zsh"
 test -e "$P10K_CONFIG" && source "$P10K_CONFIG"
 zcomet load romkatv/powerlevel10k		
 zcomet load jonmosco/kube-ps1
@@ -69,8 +84,6 @@ zcomet load ohmyzsh plugins/dash
 zcomet load ohmyzsh plugins/kubectl
 
 ##: Security and encryption
-GPG_TTY=$(tty)
-export GPG_TTY
 zcomet load ohmyzsh plugins/gpg-agent
 zcomet snippet OMZ::plugins/1password/1password.plugin.zsh
 zcomet load ohmyzsh plugins/ssh-agent
@@ -85,7 +98,6 @@ zcomet load softmoth/zsh-vim-mode
 
 ##: FZF
 zcomet load junegunn/fzf shell completion.zsh key-bindings.zsh
-export FZF_COMPLETION_TRIGGER=';;'
 
 ##: AWS
 zcomet load ohmyzsh plugins/aws
