@@ -1,0 +1,5 @@
+-- ~/.config/xplr/xplr.lua
+--
+
+
+
