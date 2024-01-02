@@ -61,14 +61,16 @@ alias t='terragrunt'
 alias rr='ranger'
 alias wt='wezterm'
 alias k='kubectl'
+alias x='xplr'
 
 
 ##: Directoreis
+zcomet load ohmyzsh plugins/autoenv
 zcomet load ohmyzsh plugins/direnv               # Run shell commands when entering a directory
 zcomet load ohmyzsh plugins/zoxide               # A smarter cd command
 zcomet snippet OMZ::lib/directories.zsh
 
-##: Prompt 
+###: Prompt 
 test -e "$P10K_CONFIG" && source "$P10K_CONFIG"
 zcomet load romkatv/powerlevel10k		
 zcomet load jonmosco/kube-ps1
@@ -89,6 +91,11 @@ zcomet snippet OMZ::plugins/1password/1password.plugin.zsh
 zcomet load ohmyzsh plugins/ssh-agent
 
 ##: All the fixins - Order matters here !!
+
+zcomet snippet OMZ::lib/compfix.zsh
+zcomet snippet "${ZDOTDIR}/lib/completion.zsh"
+zcomet snippet OMZ::lib/correction.zsh
+
 zcomet load zsh-users/zsh-autosuggestions        
 bindkey -M viins '^e' autosuggest-accept        
 
@@ -103,11 +110,7 @@ zcomet load junegunn/fzf shell completion.zsh key-bindings.zsh
 zcomet load ohmyzsh plugins/aws
 
 ##: Completion
-zcomet snippet OMZ::lib/compfix.zsh
-zcomet snippet "${ZDOTDIR}/lib/completion.zsh"
-
-##: Correction
-zcomet snippet OMZ::lib/correction.zsh
 
 ##: Local settings
 [[ ! -f $ZDOTDIR/.zlocal ]] || source ${ZDOTDIR}/.zlocal
+

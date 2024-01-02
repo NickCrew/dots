@@ -47,7 +47,7 @@ gui:
     showRandomTip: true
     showCommandLog: true
     showBottomLine: true
-    showIcons: false
+    showIcons: true
     nerdFontsVersion: ""
     showBranchCommitHash: false
     commandLogSize: 8
@@ -238,7 +238,7 @@ keybinding:
         init: i
         update: u
         bulkMenu: b
-disableStartupPopups: false
+disableStartupPopups: true
 customCommands: []
 services: {}
 notARepository: prompt

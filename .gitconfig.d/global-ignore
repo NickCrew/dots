@@ -3,6 +3,7 @@
 
 # Direnv
 .envrc
+.env
 
 # ---- Vim ----
 #

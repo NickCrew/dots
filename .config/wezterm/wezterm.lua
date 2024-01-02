@@ -54,6 +54,11 @@ wezterm.on("ActivatePaneDirection-down", function(window, pane)
   conditional_activate_pane(window, pane, "Down", "j")
 end)
 
+local font = {
+  font = wezterm.font(settings.font.name, { weight = settings.font.weight }),
+  size = 16.5
+}
+
 
 --
 -- Settings
@@ -65,8 +70,8 @@ return {
   color_scheme                   = _get_theme_for_appearance(),
   enable_scroll_bar              = true,
   enable_wayland                 = false,
-  font                           = wezterm.font(settings.font.name, { weight = settings.font.weight }),
-  font_size                      = settings.font.size,
+  font                           = font.font,
+  font_size                      = font.size,
   hyperlink_rules                = {
     { regex = "\\b\\w+://[\\w.-]+:[0-9]{2,15}\\S*\\b",      format = "$,0", },
     { regex = "\\b\\w+://[\\w.-]+\\.[a-z]{2,15}\\S*\\b",    format = "$0", },

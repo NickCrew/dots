@@ -41,41 +41,44 @@ function install_brew() {
 
 function install_brew_packages() {
   brew install \
+	libevent \
+	ncurses \
+    cfn-lint \
+	utf8proc  \
     ansible \
-    ansible-lint \
-    autoconf \
+    yamllint \
+    yamlfmt \
     automake \
     aws-iam-authenticator \
     bison \
     bzip2 \
-    jq \ 
+    fortune \
+    gimme-aws-creds \
+    git-delta \
+    helm \
+    jq \
     k9s \
-    kube-linter \ 
-    kubectl \ 
+    k9s \
+    kube-linter \
+    kube-linter \
+    kube-ps1 \
+    kubectl \
     kubectx \
+    kubernetes-cli \
+    lf \
     luarocks \
-	libevent \
-	ncurses \
+    luarocks \
+    neovim-remote \
+    nvimpager \
     nvm \
-    pipx \ 
+    terragrunt \
+    terraform \
+    pipx \
     pkg-config
     pyenv \
     pyenv-virtualenv \
     pyenv-virtualenvwrapper \
-    tree-sitter \
-	utf8proc 
-}
-
-function install_rust () {
-  if ! command -v cargo >/dev/null; then
-      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-  fi
-}
-
-function install_cargo_packages() {
-  source ~/.cargo/env
-  cargo install \
-    broot \
+    ranger \
     exa \
     fd-find \
     mcfly \
@@ -108,23 +111,8 @@ function install_python() {
 }
 
 function install_python_cli_packages() {
-  pipx install \
-    nvr \
-    ipython \
-    cfn-lint \
-    pygmentize \
-    httpie \
-    pyfunky \
-}
-
-# Install Neovim
-function install_npm_global_packages() {
-  git clone git@github.com:NickCrew/nvim-pde.git 
-  ~/.config/nvim/tools/update-nvim-nightly
-  npm install -g \
-    neovim \
-    typescript
-}
+  echo ""
+ }
 
 
 ## Main ##
