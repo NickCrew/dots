@@ -1,0 +1,19 @@
+# default session for dev workstation
+session_name: work-sensorops
+start_directory: '/Users/nick/Work/threatx-sensorops'
+automatic-rename: true
+global_options:
+  default-shell: /bin/zsh
+windows:
+  # default start 
+  - window_name: SensorOps
+    start_directory: '~/Work/threatx-sensorops'
+    focus: true
+    options:
+      main-pane-height: 80
+    panes:
+      - shell_command:
+        - nvim
+        focus: true
+      - shell_command:
+        - poetry run txs status

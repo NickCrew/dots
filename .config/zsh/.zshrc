@@ -64,35 +64,37 @@ alias k='kubectl'
 alias x='xplr'
 
 
-##: Directoreis
-zcomet load ohmyzsh plugins/autoenv
-zcomet load ohmyzsh plugins/direnv               # Run shell commands when entering a directory
-zcomet load ohmyzsh plugins/zoxide               # A smarter cd command
-zcomet snippet OMZ::lib/directories.zsh
-
 ###: Prompt 
 test -e "$P10K_CONFIG" && source "$P10K_CONFIG"
 zcomet load romkatv/powerlevel10k		
-zcomet load jonmosco/kube-ps1
 
-##: Git
-zcomet snippet OMZ::lib/git.zsh
-zcomet load ohmyzsh plugins/git             
-zcomet load ohmyzsh plugins/gh              
-zcomet load ohmyzsh plugins/git-hubflow     
-
-##: Development Tools
 zcomet load ohmyzsh plugins/dash           
-zcomet load ohmyzsh plugins/kubectl
-
-##: Security and encryption
+zcomet load ohmyzsh plugins/direnv               # Run shell commands when entering a directory
+zcomet load ohmyzsh plugins/gh                     # Github CL>  
+zcomet load ohmyzsh plugins/git             
+zcomet load ohmyzsh plugins/git-hubflow     
 zcomet load ohmyzsh plugins/gpg-agent
-zcomet snippet OMZ::plugins/1password/1password.plugin.zsh
+zcomet load ohmyzsh plugins/history-substring-search
+zcomet load ohmyzsh plugins/kubectl
+zcomet load jonmosco/kube-ps1
+zcomet load ohmyzsh plugins/per-directory-history
+zcomet load ohmyzsh plugins/poetry
+zcomet load ohmyzsh plugins/colored-man-pages
+zcomet load ohmyzsh plugins/poetry-env
 zcomet load ohmyzsh plugins/ssh-agent
+zcomet load ohmyzsh plugins/zoxide               # A smarter cd command
+zcomet snippet OMZ::lib/directories.zsh
+zcomet snippet OMZ::lib/git.zsh
+zcomet load ohmyzsh plugins/colorize
+zcomet load ohmyzsh plugins/copyfile
+zcomet load ohmyzsh plugins/copybuffer
+zcomet snippet OMZ::plugins/1password/1password.plugin.zsh
 
 ##: All the fixins - Order matters here !!
 
 zcomet snippet OMZ::lib/compfix.zsh
+zcomet load marlonrichert/zsh-autocomplete
+
 zcomet snippet "${ZDOTDIR}/lib/completion.zsh"
 zcomet snippet OMZ::lib/correction.zsh
 
@@ -113,4 +115,3 @@ zcomet load ohmyzsh plugins/aws
 
 ##: Local settings
 [[ ! -f $ZDOTDIR/.zlocal ]] || source ${ZDOTDIR}/.zlocal
-

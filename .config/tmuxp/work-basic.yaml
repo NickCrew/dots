@@ -1,0 +1,12 @@
+# default session for dev workstation
+session_name: workstation
+start_directory: '~/Work'
+automatic-rename: true
+global_options:
+  default-shell: zsh
+  default-command: zsh
+windows:
+  # default start 
+  - window_name: Work
+    start_directory: '~/Work'
+    focus: true

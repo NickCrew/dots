@@ -1,0 +1,38 @@
+
+local wtact = require("wezterm").action
+
+return {
+  { key = "q",        mods = "LEADER",      action = wtact.CloseCurrentPane({ confirm = false }) },
+  { key = "z",        mods = "ALT",         action = wtact.TogglePaneZoomState },
+  { key = "F11",      mods = "",            action = wtact.ToggleFullScreen },
+  { key = "c",        mods = "LEADER",      action = wtact.ActivateCopyMode },
+  { key = "=",        mods = "CTRL|SHIFT",  action = wtact.IncreaseFontSize },
+  { key = "-",        mods = "CTRL|SHIFT",  action = wtact.DecreaseFontSize },
+  { key = "c",        mods = "CTRL|SHIFT",  action = wtact.CopyTo("Clipboard") },
+  { key = "v",        mods = "CTRL|SHIFT",  action = wtact.PasteFrom("Clipboard") },
+  { key = 'PageDown', mods = 'SHIFT',       action = wtact.ScrollByPage(1) },
+  { key = 'PageUp',   mods = 'SHIFT',       action = wtact.ScrollByPage(-1) },
+  { key = "h",        mods = "CTRL|SHIFT",  action = wtact.AdjustPaneSize({ "Left", 5 }) },
+  { key = "k",        mods = "CTRL|SHIFT",  action = wtact.AdjustPaneSize({ "Up", 5 }) },
+  { key = "l",        mods = "CTRL|SHIFT",  action = wtact.AdjustPaneSize({ "Right", 5 }) },
+  { key = "j",        mods = "CTRL|SHIFT",  action = wtact.AdjustPaneSize({ "Down", 5 }) },
+  { key = 'h',        mods = 'SUPER|SHIFT', action = wtact.ActivatePaneDirection 'Left', },
+  { key = 'l',        mods = 'SUPER|SHIFT', action = wtact.ActivatePaneDirection 'Right', },
+  { key = 'k',        mods = 'SUPER|SHIFT', action = wtact.ActivatePaneDirection 'Up', },
+  { key = 'j',        mods = 'SUPER|SHIFT', action = wtact.ActivatePaneDirection 'Down', },
+  { key = "|",        mods = "CTRL|SHIFT",  action = wtact({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
+  { key = "-",        mods = "CTRL",        action = wtact({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
+  { key = "1",        mods = "SUPER",       action = wtact({ ActivateTab = 0 }) },
+  { key = "2",        mods = "SUPER",       action = wtact({ ActivateTab = 1 }) },
+  { key = "3",        mods = "SUPER",       action = wtact({ ActivateTab = 2 }) },
+  { key = "4",        mods = "SUPER",       action = wtact({ ActivateTab = 3 }) },
+  { key = "5",        mods = "SUPER",       action = wtact({ ActivateTab = 4 }) },
+  { key = "6",        mods = "SUPER",       action = wtact({ ActivateTab = 5 }) },
+  { key = "7",        mods = "SUPER",       action = wtact({ ActivateTab = 6 }) },
+  { key = "8",        mods = "SUPER",       action = wtact({ ActivateTab = 7 }) },
+  { key = "9",        mods = "SUPER",       action = wtact({ ActivateTab = 8 }) },
+  { key = "l",        mods = "SUPER",       action = wtact.ShowLauncher },
+  { key = '9',        mods = 'ALT',         action = wtact.ShowLauncherArgs { flags = 'FUZZY|WORKSPACES' }, },
+  { key = ']',        mods = 'SUPER|SHIFT', action = wtact.SwitchWorkspaceRelative(1) },
+  { key = '[',        mods = 'SUPER|SHIFT', action = wtact.SwitchWorkspaceRelative(-1) }
+}

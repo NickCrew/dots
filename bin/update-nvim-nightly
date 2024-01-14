@@ -1,0 +1,21 @@
+#!/usr/bin/env zsh
+
+download_url="https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz"
+src=${HOME}/Downloads/nvim-macos.tar.gz
+dst=${HOME}/opt
+app=${HOME}/Applications/nvim
+
+[ -f $src ] &&  rm $src
+curl -fsSL $download_url -o $src
+xattr -c $src
+tar xvzf $src -C $dst
+rm -rvf $src
+cd ~/Applications
+ln -sfv ../../opt/nvim-macos/bin/nvim nvim-nightly
+cd -
+
+echo "Installed Neovim nightly!"
+
+
+
+
