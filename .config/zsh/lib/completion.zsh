@@ -11,7 +11,6 @@ setopt auto_menu         # show completion menu on successive tab press
 setopt always_to_end
 
 ## 25.2. - Auto Complete
-#zcomet load marlonrichert/zsh-autocomplete
 
 ## 25.3 - init completion system
 zmodload zsh/complist  
@@ -41,9 +40,6 @@ zstyle ':completion:*' group-name ''                                            
 zstyle ':completion:*:*:-command-:*:*' group-order aliases builtins functions commands
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 # Autocomplete options
-zstyle ':autocomplete:*complete*:*' insert-unambiguous yes
-zstyle ':autocomplete:*history*:*' insert-unambiguous yes
-zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
 
 #zstyle '*:compinit' arguments -D -i -u -C -w
 ##: Auto Complete Keybindings

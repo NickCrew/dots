@@ -92,6 +92,11 @@ zcomet snippet OMZ::plugins/1password/1password.plugin.zsh
 
 ##: All the fixins - Order matters here !!
 
+zcomet load marlonrichert/zsh-autocomplete
+zstyle ':autocomplete:*complete*:*' insert-unambiguous yes
+zstyle ':autocomplete:*history*:*' insert-unambiguous yes
+zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
+
 zcomet snippet OMZ::lib/compfix.zsh
 #zcomet load marlonrichert/zsh-autocomplete
 
