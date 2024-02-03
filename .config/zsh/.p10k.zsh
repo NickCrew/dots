@@ -33,6 +33,11 @@
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
 
+    per_directory_history   # Oh My Zsh per-directory-history local/global indicator
+    todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
+    timewarrior             # timewarrior tracking status (https://timewarrior.net/)
+    taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
+    newline
     os_icon                 # os identifier
     context
     dir                     # current directory
@@ -48,9 +53,11 @@
   # last prompt line gets hidden if it would overlap with left prompt.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
+
     
-     #ip                    # ip address and bandwidth usage for a specified network interface
-    #public_ip               # public IP address
+    ip                    # ip address and bandwidth usage for a specified network interface
+    public_ip               # public IP address
+    newline
     background_jobs         # presence of background jobs
     direnv                  # direnv status (https://direnv.net/)
     # node_version          # node.js version
@@ -86,17 +93,13 @@
     nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
     nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
 
-    per_directory_history   # Oh My Zsh per-directory-history local/global indicator
-    # load                  # CPU load
     # disk_usage            # disk usage
     # ram                   # free RAM
     # swap                  # used swap
     vpn_ip
     # cpu_arch              # CPU architecture
+    # load                  # CPU load
 
-    todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
-    timewarrior             # timewarrior tracking status (https://timewarrior.net/)
-    taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
     # =========================[ Line #2 ]=========================
     newline
     status                  # exit code of the last command
@@ -104,7 +107,6 @@
     time                    # current time
     # proxy                 # system-wide http/https/ftp proxy
     # battery               # internal battery
-    # wifi                  # wifi speed
     # example               # example user-defined segment (see prompt_example function below)
   )
 

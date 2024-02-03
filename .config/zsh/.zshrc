@@ -93,7 +93,7 @@ zcomet snippet OMZ::plugins/1password/1password.plugin.zsh
 ##: All the fixins - Order matters here !!
 
 zcomet snippet OMZ::lib/compfix.zsh
-zcomet load marlonrichert/zsh-autocomplete
+#zcomet load marlonrichert/zsh-autocomplete
 
 zcomet snippet "${ZDOTDIR}/lib/completion.zsh"
 zcomet snippet OMZ::lib/correction.zsh
