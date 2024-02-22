@@ -33,7 +33,6 @@ return {
   pane_focus_follows_mouse       = false,
   scrollback_lines               = 100000,
   show_new_tab_button_in_tab_bar = true,
-  show_update_window             = true,
   tab_bar_at_bottom              = false,
   tab_max_width                  = 100,
   use_dead_keys                  = false,

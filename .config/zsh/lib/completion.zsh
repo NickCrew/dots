@@ -39,7 +39,7 @@ zstyle ':completion:*:complete:git:argument-1:' tag-order !aliases
 zstyle ':completion:*' group-name ''                                                              # Required for completion to be in good groups (named after the tags)
 zstyle ':completion:*:*:-command-:*:*' group-order aliases builtins functions commands
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
-# Autocomplete options
+
 
 #zstyle '*:compinit' arguments -D -i -u -C -w
 ##: Auto Complete Keybindings
@@ -54,6 +54,11 @@ bindkey -M menuselect '^xi' vi-insert						# Insert
 bindkey -M menuselect '^xh' accept-and-hold                	# Hold
 bindkey -M menuselect '^xn' accept-and-infer-next-history  	# Next
 bindkey -M menuselect '^xu' undo                           	# Undo
+
+# Autocomplete options
+zstyle ':autocomplete:*complete*:*' insert-unambiguous yes
+zstyle ':autocomplete:*history*:*' insert-unambiguous yes
+zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
 # Make zsh autocomplete with up arrow
 autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end
